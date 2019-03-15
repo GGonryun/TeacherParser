@@ -12,5 +12,6 @@ namespace ClassStatistics
         public Class.Time Time { get; private set; }
         public Class.Day Day { get; private set; }
         public Class.Room Room { get; private set; }
+        public Instructor Instructor { get; private set; }
     }
 }
