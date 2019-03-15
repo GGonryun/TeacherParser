@@ -1,0 +1,1 @@
+﻿public enum ClassFormat { Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None}
