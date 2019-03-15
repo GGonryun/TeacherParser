@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace ClassStatistics
 {
     class SchoolClass
@@ -11,10 +8,8 @@ namespace ClassStatistics
         public int Schedule { get; private set; }
         public string CourseTitle { get; private set; }
         public float Units { get; private set; }
-        public ClassFormat Format { get; private set; }
-        public float 
-
-
+        public Class.Format Format { get; private set; }
+        public Class.Time Time { get; private set; }
 
     }
 }

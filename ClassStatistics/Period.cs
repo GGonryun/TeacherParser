@@ -1,1 +1,0 @@
-﻿public enum Period { MIL, AM, PM }
