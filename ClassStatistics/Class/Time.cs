@@ -7,9 +7,13 @@ namespace Class
 {
     public class Time
     {
-        public Day Day { get; private set; }
         public LocalTime Start { get; private set; }
         public LocalTime End { get; private set; }
 
+        public Time(LocalTime start, LocalTime end)
+        {
+            this.Start = start;
+            this.End = end;
+        }
     }
 }

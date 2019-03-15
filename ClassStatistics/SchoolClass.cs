@@ -10,6 +10,7 @@ namespace ClassStatistics
         public float Units { get; private set; }
         public Class.Format Format { get; private set; }
         public Class.Time Time { get; private set; }
-
+        public Class.Day Day { get; private set; }
+        public Class.Room Room { get; private set; }
     }
 }
