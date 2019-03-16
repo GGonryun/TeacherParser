@@ -7,15 +7,15 @@ using Filtering.Specifications;
 
 namespace Filtering
 {
-    class MeetingFilter : IFilter<Meeting>
+    class MatchAllFilter<T> : IFilter<T>
     {
-        public IEnumerable<Meeting> Filter(IEnumerable<Meeting> content, params ISpecification<Meeting>[] specifications)
+        public IEnumerable<T> Filter(IEnumerable<T> content, params ISpecification<T>[] specifications)
         {
             var filteredContent = content.Where(
-                instructor =>
+                item =>
                 {
-                    foreach (ISpecification<Meeting> spec in specifications)
-                        if (!spec.Satisfied(instructor))
+                    foreach (ISpecification<T> spec in specifications)
+                        if (!spec.Satisfied(item))
                             return (false);
                     return true;
                 }

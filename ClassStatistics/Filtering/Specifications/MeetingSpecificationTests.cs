@@ -9,7 +9,7 @@ using Filtering.Specifications;
 
 namespace Filtering
 {
-    class MeetingFilterTests
+    class MeetingSpecificationTests
     {
         List<Meeting> meetings;
         IFilter<Meeting> filter;
@@ -17,7 +17,7 @@ namespace Filtering
         [SetUp]
         public void SetUp()
         {
-            filter = new MeetingFilter();
+            filter = new MatchAllFilter<Meeting>();
             meetings = new List<Meeting>()
             {
                 new Meeting(
@@ -29,7 +29,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("0930-1045"),
                     new Day("TTH"),
-                    new Location(24, 6, 0, "GMCS", 325),
+                    new Location(24, 13, 0, "GMCS", 325),
                     "L. Beck"
                 ),
                 new Meeting(
@@ -41,7 +41,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1400-1515"),
                     new Day("MW"),
-                    new Location(-12, 80, 0, "GMCS", 214),
+                    new Location(80, -12, 0, "GMCS", 214),
                     "S. Lindeneau"
                 ),
                 new Meeting(
@@ -65,7 +65,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1230-1345"),
                     new Day("TTH"),
-                    new Location(12, 110, 0, "COM", 207),
+                    new Location(110, 12, 0, "COM", 207),
                     "L. Riggins"
                 )
             };
@@ -179,6 +179,20 @@ namespace Filtering
             ISpecification<Meeting> specs = new TimeNonOverlappingSpecification(new Time("1330-1430"));
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
             Assert.AreEqual(1, courses.Count());
+        }
+
+        [Test]
+        public void ClassRatioNotFull()
+        {
+            ISpecification<Meeting> specs = new ClassRatioSpecification(1.0f, (x, y) => x < y);
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(3, courses.Count());
+        }
+        public void ClassRatioMoreThan50Percent()
+        {
+            ISpecification<Meeting> specs = new ClassRatioSpecification(.5f, (x, y) => x > y);
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(3, courses.Count());
         }
     }
 }

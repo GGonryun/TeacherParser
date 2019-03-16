@@ -8,9 +8,13 @@
         public float Ratio { get => (Capacity - RemainingSeats) / (float)Capacity; }
         public Room Room { get; private set; }
 
-        public Location(int seats, int remainingSeats, int waitlist, Room room)
+        public Location(int capacity, int remainingSeats, int waitlist, Room room)
         {
-            this.Capacity = seats;
+            if (capacity < remainingSeats)
+            {
+                throw new System.ArgumentException($"There cannot be more remaining seats ({remainingSeats}) then the capacity ({capacity}) of the room!");
+            }
+            this.Capacity = capacity;
             this.RemainingSeats = remainingSeats;
             this.Room = room;
             this.Waitlist = waitlist;

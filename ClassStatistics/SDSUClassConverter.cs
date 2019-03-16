@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassStatistics.Filtering.Specifications
+namespace ClassStatistics.Utility
 {
-    class ClassRatioSpecification
+    class SDSUClassConverter
     {
     }
 }
