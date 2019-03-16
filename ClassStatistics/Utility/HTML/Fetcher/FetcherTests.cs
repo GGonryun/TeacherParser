@@ -16,7 +16,7 @@ namespace Utility.HTML
         [SetUp]
         public void SetUp()
         {
-            startUpPath = CONSTANTS.StartUpPath;
+            startUpPath = CONSTANTS.RawHTMLPath;
             webPath = "https://pages.github.com";
             localFetcher = new Fetcher(Source.Local, startUpPath);
             webFetcher = new Fetcher(Source.Web, webPath, "");

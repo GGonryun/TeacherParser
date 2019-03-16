@@ -1,0 +1,25 @@
+﻿<div class="sectionMeeting">
+	<div class="sectionFieldCourse column">
+        <a href="sectiondetails?scheduleNumber=21028&period=20192&admin_unit=R">CS-320</a>
+	</div>
+    <div class="sectionFieldBlock column"></div>
+          
+    <div class="sectionFieldSec column">01</div>
+    <div class="sectionFieldSched column">21028</div>
+    <div class="sectionFieldTitle column">PROGRAMMING LANGUAGES</div>
+    <div class="sectionFieldUnits column">3.0</div>
+    <div class="sectionFieldType column">Lecture</div>
+    <div class="sectionFieldTime column">1400-1515</div>
+    <div class="sectionFieldDay column">TTH</div>
+    <div class="sectionFieldLocation column">
+        <a href="http://www.myatlascms.com/map/?id=801&mrkIid=147075" target="_blank">EBA-343</a>
+    </div>
+            
+    <div class="sectionFieldInstructor column">
+		<a href="search?mode=search&instructor=HEALEY">S. HEALEY</a><br/>
+    </div>
+    <div class="sectionFieldSeats column">
+		1/75<br><span id="statusValues">Waitlisted:5</span>
+    </div></div>
+    
+   

@@ -20,7 +20,7 @@ namespace Utility.HTML
         {
             classPattern = "//*[contains(concat(' ', @class, ' '), ' apple ')]";
             elementPattern = "//b";
-            startUpPath = CONSTANTS.StartUpPath;
+            startUpPath = CONSTANTS.RawHTMLPath;
             fetcher = new Fetcher(Source.Local, startUpPath);
             elementParser = new Parser(fetcher.Document, elementPattern);
             classParser = new Parser(fetcher.Document, classPattern);

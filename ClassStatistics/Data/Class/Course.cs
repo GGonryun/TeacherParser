@@ -18,6 +18,14 @@ namespace Class
             this.Number = number;
         }
 
+        public Course(string title, string code)
+        {
+            this.Title = title;
+            string[] parts = code.Split('-');
+            Subject = parts[0];
+            Number = Convert.ToInt32(parts[1]);
+        }
+
 
 
     }
