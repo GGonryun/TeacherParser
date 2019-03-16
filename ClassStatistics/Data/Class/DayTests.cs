@@ -14,7 +14,7 @@ namespace Class
         Day mwfDays;
 
 
-        [SetUp] protected void Setup()
+        [SetUp] protected void SetUp()
         {
             thursdayDay = new Day("TH");
             mwDays = new Day("MW");

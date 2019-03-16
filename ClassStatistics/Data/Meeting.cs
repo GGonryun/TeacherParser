@@ -1,7 +1,7 @@
 ﻿
 namespace ClassStatistics
 {
-    class SchoolClass
+    class Meeting
     {
         public string Course { get; private set; }
         public int Section { get; private set; }
