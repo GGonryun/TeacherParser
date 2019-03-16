@@ -29,7 +29,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("0930-1045"),
                     new Day("TTH"),
-                    new Location(24, 6, "GMCS", 325),
+                    new Location(24, 6, 0, "GMCS", 325),
                     "L. Beck"
                 ),
                 new Meeting(
@@ -41,7 +41,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1400-1515"),
                     new Day("MW"),
-                    new Location(-12, 80, "GMCS", 214),
+                    new Location(-12, 80, 0, "GMCS", 214),
                     "S. Lindeneau"
                 ),
                 new Meeting(
@@ -53,7 +53,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1230-1345"),
                     new Day("TTH"),
-                    new Location(80, 4, "GMCS", 325),
+                    new Location(80, 4, 0, "GMCS", 325),
                     "L. Riggins"
                 ),
                 new Meeting(
@@ -65,7 +65,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1230-1345"),
                     new Day("TTH"),
-                    new Location(12, 110, "COM", 207),
+                    new Location(12, 110, 0, "COM", 207),
                     "L. Riggins"
                 )
             };
@@ -124,5 +124,53 @@ namespace Filtering
             Assert.AreEqual(1, course.Count());
         }
 
+        [Test]
+        public void IgnoreCourseSpecification()
+        {
+            ISpecification<Meeting> specs = new IgnoreCoursesSpecification(new List<Course>() { new Course("INTRO COMPUTER PROGRAM", "CS", 107) });
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(2, courses.Count());
+        }
+
+        [Test]
+        public void TimeRangeSpecification()
+        {
+            ISpecification<Meeting> specs = new TimeRangeSpecification(new NodaTime.LocalTime(0, 30), new Time("1130-1200"));
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(2, courses.Count());
+        }
+
+
+        [Test]
+        public void TimeGreaterThanSpecification()
+        {
+            Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> comparator = (x, y) => x > y;
+
+            //Returns all classes that end after 12:45pm.
+            ISpecification<Meeting> specs = new TimeSpecification(false, new NodaTime.LocalTime(12, 45), comparator);
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(3, courses.Count());
+
+            //Returns all classes that start after 12:45pm.
+            ISpecification<Meeting> specs2 = new TimeSpecification(true, new NodaTime.LocalTime(12, 45), comparator);
+            IEnumerable<Meeting> courses2 = filter.Filter(meetings, specs2);
+            Assert.AreEqual(1, courses2.Count());
+        }
+
+        [Test]
+        public void TimeLessThanSpecification()
+        {
+            Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> comparator = (x, y) => x < y;
+
+            //Returns all classes that end before 12:45pm.
+            ISpecification<Meeting> specs = new TimeSpecification(false, new NodaTime.LocalTime(12, 45), comparator);
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(1, courses.Count());
+
+            //Returns all classes that start before 12:45pm.
+            ISpecification<Meeting> specs2 = new TimeSpecification(true, new NodaTime.LocalTime(12, 45), comparator);
+            IEnumerable<Meeting> courses2 = filter.Filter(meetings, specs2);
+            Assert.AreEqual(3, courses2.Count());
+        }
     }
 }
