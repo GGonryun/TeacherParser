@@ -5,6 +5,6 @@
 	<p>This is <u>underlined</u> paragraph</p>
 	<h2>This is <i>italic</i> heading</h2>
 	<div class="apple">apple</div>
-	<div class="not apple">banana</div>
+	<div class="not-apple">banana</div>
 </body>
 </html>
