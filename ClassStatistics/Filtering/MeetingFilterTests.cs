@@ -21,10 +21,9 @@ namespace Filtering
             meetings = new List<Meeting>()
             {
                 new Meeting(
-                    new Course("CS",101),
+                    new Course("COMPUTATIONAL THINKING", "CS",101),
                     1,
                     30853,
-                    "COMPUTATIONAL THINKING",
                     3.0f,
                     Format.Lecture,
                     new Time("0930-1045"),
@@ -33,10 +32,9 @@ namespace Filtering
                     "L. Beck"
                 ),
                 new Meeting(
-                    new Course("CS",107),
+                    new Course("INTRO COMPUTER PROGRAM", "CS",107),
                     1,
                     20896,
-                    "INTRO COMPUTER PROGRAM",
                     3.0f,
                     Format.Lecture,
                     new Time("1400-1515"),
@@ -45,10 +43,9 @@ namespace Filtering
                     "S. Lindeneau"
                 ),
                 new Meeting(
-                    new Course("CS",107),
+                    new Course("INTRO COMPUTER PROGRAM", "CS",107),
                     2,
                     20897,
-                    "INTRO COMPUTER PROGRAM",
                     3.0f,
                     Format.Lecture,
                     new Time("1230-1345"),
