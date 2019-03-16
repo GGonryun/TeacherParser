@@ -34,12 +34,24 @@ namespace Utility.HTML
         }
 
         [Test]
-        public void BuilderCreatesCourseProperly()
+        public void BuildCourseSuccessfully()
         {
             Course course = builder.BuildCourse();
-            Assert.Equals("CS-320", course);
+            Assert.AreEqual("CS-320", course.Code);
+        }
+        [Test]
+        public void BuildDaySuccessfully()
+        {
+            Day day = builder.BuildDay();
+            Assert.AreEqual(2, day.Days.Count);
         }
 
+        [Test]
+        public void BuildFormatSuccessfully()
+        {
+            Format format = builder.BuildFormat();
+            Assert.AreEqual(Format.Lecture, format);
+        }
     }
 
 }

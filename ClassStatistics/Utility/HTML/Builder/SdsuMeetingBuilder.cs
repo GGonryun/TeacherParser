@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Class;
 using HtmlAgilityPack;
-
+using Utility;
 namespace Utility.HTML
 {
     public class SdsuMeetingBuilder : Builder
@@ -20,18 +20,20 @@ namespace Utility.HTML
         public override Course BuildCourse()
         {
             string title = NodeInnerText("sectionFieldTitle");
-            string code = NodeInnerText("SectionFieldCourse");
+            string code = NodeInnerText("sectionFieldCourse");
             return new Course(title, code);
         }
 
         public override Day BuildDay()
         {
-            throw new NotImplementedException();
+            string code = NodeInnerText("sectionFieldDay");
+            return new Day(code);
         }
 
         public override Format BuildFormat()
         {
-            throw new NotImplementedException();
+            string format = NodeInnerText("sectionFieldType");
+            return format.ParseEnum<Format>();
         }
 
         public override string BuildInstructor()
@@ -76,7 +78,8 @@ namespace Utility.HTML
 
         private string NodeInnerText(string classAttribute)
         {
-            return Parser.FindChildByClass(nodes, classAttribute).InnerText.Trim();
+            HtmlNode node = Parser.FindChildByClass(nodes, classAttribute);
+            return node.InnerText.Trim();
         }
 
       
