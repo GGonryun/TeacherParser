@@ -24,7 +24,7 @@ namespace Filtering.Specifications
 
         public bool Satisfied(Meeting item)
         {
-            return difficulty((int)this.level * 100, item.Course.Number);
+            return difficulty(item.Course.Number, (int)this.level * 100);
         }
     }
 }

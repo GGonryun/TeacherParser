@@ -22,38 +22,50 @@ namespace Filtering
             {
                 new Meeting(
                     new Period(Semester.Spring, 2014),
-                    new Course("COMPUTATIONAL THINKING", "CS",101),
+                    new Course("COMPUTATIONAL THINKING", "CS", 101),
                     1,
                     30853,
                     3.0f,
                     Format.Lecture,
                     new Time("0930-1045"),
                     new Day("TTH"),
-                    new Location(24, 6, "GMCS",325),
+                    new Location(24, 6, "GMCS", 325),
                     "L. Beck"
                 ),
                 new Meeting(
                     new Period(Semester.Spring, 2014),
-                    new Course("INTRO COMPUTER PROGRAM", "CS",107),
+                    new Course("INTRO COMPUTER PROGRAM", "CS", 107),
                     1,
                     20896,
                     3.0f,
                     Format.Lecture,
                     new Time("1400-1515"),
                     new Day("MW"),
-                    new Location(-12, 80, "GMCS",214),
+                    new Location(-12, 80, "GMCS", 214),
                     "S. Lindeneau"
                 ),
                 new Meeting(
                     new Period(Semester.Spring, 2014),
-                    new Course("INTRO COMPUTER PROGRAM", "CS",107),
+                    new Course("INTRO COMPUTER PROGRAM", "CS", 107),
                     2,
                     20897,
                     3.0f,
                     Format.Lecture,
                     new Time("1230-1345"),
                     new Day("TTH"),
-                    new Location(80, 4, "GMCS",325),
+                    new Location(80, 4, "GMCS", 325),
+                    "L. Riggins"
+                ),
+                new Meeting(
+                    new Period(Semester.Spring, 2014),
+                    new Course("MACHINE ORG&ASSEMBLY LANG", "CS", 237),
+                    1,
+                    20900,
+                    3.0f,
+                    Format.Lecture,
+                    new Time("1230-1345"),
+                    new Day("TTH"),
+                    new Location(12, 110, "COM", 207),
                     "L. Riggins"
                 )
             };
@@ -72,7 +84,7 @@ namespace Filtering
         public void CourseSubjectSpecification()
         {
             IEnumerable<Meeting> subject = filter.Filter(meetings, new CourseSubjectSpecification("CS"));
-            Assert.AreEqual(3, subject.Count());
+            Assert.AreEqual(4, subject.Count());
         }
 
         [Test]
@@ -96,6 +108,21 @@ namespace Filtering
             Assert.AreEqual(1, course.Count());
         }
 
+        [Test]
+        public void CourseLevelSpecificationEasier()
+        {
+            ISpecification<Meeting> specs = new CourseLevelSpecification(Level.Sophomore, (x, y) => x < y);
+            IEnumerable<Meeting> course = filter.Filter(meetings, specs);
+            Assert.AreEqual(3, course.Count());
+        }
+
+        [Test] 
+        public void CourseLevelSpecificationHarder()
+        {
+            ISpecification<Meeting> specs = new CourseLevelSpecification(Level.Sophomore, (x, y) => x >= y);
+            IEnumerable<Meeting> course = filter.Filter(meetings, specs);
+            Assert.AreEqual(1, course.Count());
+        }
 
     }
 }
