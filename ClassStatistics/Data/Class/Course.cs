@@ -17,7 +17,7 @@ namespace Class
 
         public override string ToString()
         {
-            return $"{Subject}-{Number}":
+            return $"{Subject}-{Number}";
         }
     }
 }

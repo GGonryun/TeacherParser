@@ -4,6 +4,6 @@ namespace Utility
 {
     interface IFilter<T>
     {
-        IEnumerable<T> Filter(IEnumerable<T> content, ISpecification<T> specification);
+        IEnumerable<T> Filter(IEnumerable<T> content, params ISpecification<T>[] specification);
     }
 }
