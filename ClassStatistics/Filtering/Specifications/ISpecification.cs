@@ -1,4 +1,4 @@
-﻿namespace Filtering
+﻿namespace Filtering.Specifications
 {
     public interface ISpecification<T>
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Filtering
+namespace Filtering.Specifications
 {
     public class InstructorNameSpecification : ISpecification<Meeting>
     {

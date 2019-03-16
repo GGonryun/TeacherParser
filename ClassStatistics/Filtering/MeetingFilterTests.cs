@@ -5,15 +5,19 @@ using Class;
 using Utility;
 using NUnit.Framework;
 using System.Linq;
+using Filtering.Specifications;
 
 namespace Filtering
 {
-    class FilterTests
+    class MeetingFilterTests
     {
         List<Meeting> meetings;
+        IFilter<Meeting> filter;
+
         [SetUp]
         public void SetUp()
         {
+            filter = new MeetingFilter();
             meetings = new List<Meeting>()
             {
                 new Meeting(
@@ -53,16 +57,45 @@ namespace Filtering
                     "L. Riggins"
                 )
             };
+
         }
 
 
         [Test]
-        public void SingleFilter()
+        public void InstructorNameSpecification()
         {
-            var filter = new MeetingFilter();
             IEnumerable<Meeting> teachers = filter.Filter(meetings, new InstructorNameSpecification("L. Beck"));
             Assert.AreEqual(1, teachers.Count());
         }
+
+        [Test]
+        public void CourseSubjectSpecification()
+        {
+            IEnumerable<Meeting> subject = filter.Filter(meetings, new CourseSubjectSpecification("CS"));
+            Assert.AreEqual(3, subject.Count());
+        }
+
+        [Test]
+        public void CourseNumberSpecification()
+        {
+            IEnumerable<Meeting> number = filter.Filter(meetings, new CourseNumberSpecification(107));
+            Assert.AreEqual(2, number.Count());
+        }
+
+        [Test]
+        public void CourseSpecification()
+        {
+            ISpecification<Meeting>[] specs = new ISpecification<Meeting>[]
+            {
+                new CourseSubjectSpecification("CS"),
+                new CourseNumberSpecification(107),
+                new InstructorNameSpecification("L. Riggins")
+            };
+
+            IEnumerable<Meeting> course = filter.Filter(meetings, specs);
+            Assert.AreEqual(1, course.Count());
+        }
+
 
     }
 }

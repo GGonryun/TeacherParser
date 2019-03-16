@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Filtering.Specifications;
+using System;
 using System.Collections.Generic;
 namespace Filtering
 {
