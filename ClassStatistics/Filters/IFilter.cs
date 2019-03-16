@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace Utility
+namespace Filtering
 {
     interface IFilter<T>
     {

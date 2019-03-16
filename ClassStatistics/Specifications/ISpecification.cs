@@ -1,4 +1,4 @@
-﻿namespace Utility
+﻿namespace Filtering
 {
     public interface ISpecification<T>
     {
