@@ -43,5 +43,18 @@ namespace Class
             Assert.AreEqual("0001-2359", t2.ToString());
         }
 
+        [Test]
+        public void TimeContainsAnotherTime()
+        {
+            string timeBlock = "1200-1500";
+            Time t1 = new Time(timeBlock);
+
+            Assert.IsTrue(t1.Contains(new LocalTime(12, 00)));
+            Assert.IsTrue(t1.Contains(new LocalTime(15, 00)));
+
+            Assert.IsFalse(t1.Contains(new LocalTime(11, 59)));
+            Assert.IsFalse(t1.Contains(new LocalTime(15, 01)));
+        }
+
     }
 }
