@@ -6,7 +6,6 @@ namespace Class
     public class Meeting
     {
 
-
         public Course Course { get; private set; }
         public int Section { get; private set; }
         public int Schedule { get; private set; }
