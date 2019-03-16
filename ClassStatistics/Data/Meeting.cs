@@ -5,7 +5,7 @@ namespace Class
 {
     public class Meeting
     {
-
+        public Period Period { get; private set; }
         public Course Course { get; private set; }
         public int Section { get; private set; }
         public int Schedule { get; private set; }
@@ -16,8 +16,9 @@ namespace Class
         public Class.Location Location { get; private set; }
         public string Instructor { get; private set; }
 
-        public Meeting(Course course, int section, int schedule, float units, Format format, Time time, Day day, Location location, string instructor)
+        public Meeting(Period period, Course course, int section, int schedule, float units, Format format, Time time, Day day, Location location, string instructor)
         {
+            Period = period ?? throw new ArgumentNullException(nameof(period));
             Course = course ?? throw new ArgumentNullException(nameof(course));
             Section = section;
             Schedule = schedule;
