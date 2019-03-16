@@ -44,7 +44,7 @@ namespace Class
         }
 
         [Test]
-        public void TimeContainsAnotherTime()
+        public void TimeContainsAnotherLocalTime()
         {
             string timeBlock = "1200-1500";
             Time t1 = new Time(timeBlock);
@@ -55,6 +55,24 @@ namespace Class
             Assert.IsFalse(t1.Contains(new LocalTime(11, 59)));
             Assert.IsFalse(t1.Contains(new LocalTime(15, 01)));
         }
+
+        [Test] 
+        public void TimeOverlapsAnotherTime()
+        {
+            string timeBlockA = "1200-1500";
+            string timeBlockB = "1100-1300";
+            string timeBlockC = "1400-1600";
+
+            Time t1 = new Time(timeBlockA);
+            Time t2 = new Time(timeBlockB);
+            Time t3 = new Time(timeBlockC);
+
+            Assert.IsTrue(t1.Contains(t2));
+            Assert.IsTrue(t1.Contains(t3));
+            Assert.IsFalse(t2.Contains(t3));
+
+        }
+
 
     }
 }

@@ -16,7 +16,7 @@ namespace Filtering.Specifications
 
         public bool Satisfied(Meeting item)
         {
-
+            return !(_time.Contains(item.Time));
         }
     }
 }

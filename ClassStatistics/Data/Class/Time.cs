@@ -55,5 +55,9 @@ namespace Class
         {
             return a >= Start && a <= End;
         }
+        public bool Contains(Time a)
+        {
+            return a.Start <= End && Start <= a.End;
+        }
     }
 }

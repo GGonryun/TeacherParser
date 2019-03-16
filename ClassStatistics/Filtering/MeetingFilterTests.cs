@@ -172,5 +172,13 @@ namespace Filtering
             IEnumerable<Meeting> courses2 = filter.Filter(meetings, specs2);
             Assert.AreEqual(3, courses2.Count());
         }
+
+        [Test]
+        public void TimeNonOverlapping()
+        {
+            ISpecification<Meeting> specs = new TimeNonOverlappingSpecification(new Time("1330-1430"));
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(1, courses.Count());
+        }
     }
 }
