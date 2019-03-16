@@ -1,6 +1,8 @@
-﻿namespace ClassStatistics
+﻿using System;
+
+namespace Class
 {
-    public class Instructor
+    public class Instructor : IEquatable<Instructor>
     {
         public string Name { get; private set; }
         public string SearchQuery { get; private set; }
@@ -8,6 +10,11 @@
         {
             this.Name = name;
             this.SearchQuery = query;
+        }
+
+        public bool Equals(Instructor other)
+        {
+            return this.Name == other.Name && this.SearchQuery == other.SearchQuery;
         }
     }
 }

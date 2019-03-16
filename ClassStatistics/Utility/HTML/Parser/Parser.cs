@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ClassStatistics
+namespace Utility.HTML
 {
     public class Parser
     {

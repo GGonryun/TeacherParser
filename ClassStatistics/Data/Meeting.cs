@@ -1,5 +1,5 @@
 ﻿
-namespace ClassStatistics
+namespace Class
 {
     class Meeting
     {

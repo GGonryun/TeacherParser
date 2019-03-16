@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using NUnit.Framework;
 
-namespace ClassStatistics
+namespace Utility.HTML
 {
     class ParserTests
     {
@@ -20,7 +20,7 @@ namespace ClassStatistics
         {
             classPattern = "//*[contains(concat(' ', @class, ' '), ' apple ')]";
             elementPattern = "//b";
-            startUpPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "HTML", "RawHTML.txt");
+            startUpPath = CONSTANTS.StartUpPath;
             fetcher = new Fetcher(Source.Local, startUpPath);
             elementParser = new Parser(fetcher.Document, elementPattern);
             classParser = new Parser(fetcher.Document, classPattern);

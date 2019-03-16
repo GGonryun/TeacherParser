@@ -4,20 +4,22 @@ using System.IO;
 using System.Text;
 using NUnit.Framework;
 
-namespace ClassStatistics
+namespace Utility.HTML
 {
     public class FetcherTests
     {
         Fetcher localFetcher;
         Fetcher webFetcher;
         string startUpPath;
+        string webPath;
 
         [SetUp]
         public void SetUp()
         {
-            startUpPath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "HTML", "RawHTML.txt");
+            startUpPath = CONSTANTS.StartUpPath;
+            webPath = "https://pages.github.com";
             localFetcher = new Fetcher(Source.Local, startUpPath);
-            webFetcher = new Fetcher(Source.Web, "https://pages.github.com", "");
+            webFetcher = new Fetcher(Source.Web, webPath, "");
         }
 
         [Test]
@@ -40,7 +42,7 @@ namespace ClassStatistics
         {
             Assert.AreEqual(Source.Web, webFetcher.Source);
             Assert.AreEqual("", webFetcher.Arguments);
-            Assert.AreEqual("https://pages.github.com", webFetcher.Location);
+            Assert.AreEqual(webPath, webFetcher.Location);
         }
 
         [Test]

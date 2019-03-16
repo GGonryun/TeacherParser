@@ -3,9 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-public enum Source { Web, Local }
 
-namespace ClassStatistics
+namespace Utility.HTML
 {
     public class Fetcher
     {
