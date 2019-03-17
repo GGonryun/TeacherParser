@@ -8,6 +8,8 @@ namespace Utility.HTML
 {
     public class Parser
     {
+        public static string SelectByClassPattern(string classAttribute) => $"//*[contains(concat(' ', @class, ' '), ' {classAttribute} ')]";
+        public static string SelectChildrenByClassPattern(string classAttribute) => $"./*[contains(concat(' ', @class, ' '), ' {classAttribute} ')]";
         public HtmlDocument Document { get; private set; }
         public string Pattern { get; private set; }
 
@@ -37,7 +39,7 @@ namespace Utility.HTML
 
         public static HtmlNode FindChildByClass(HtmlNode node, string classAttribute)
         {
-            HtmlNode n = node.SelectSingleNode($"./*[contains(concat(' ', @class, ' '), ' {classAttribute} ')]");
+            HtmlNode n = node.SelectSingleNode(SelectChildrenByClassPattern(classAttribute));
             if (n != null)
                 return n;
             return null;

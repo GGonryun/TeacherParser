@@ -19,6 +19,16 @@ namespace Class
         {
         }
 
+        public Period(string yearSemesterCode)
+        {
+            if (yearSemesterCode.Length != 5)
+            {
+                throw new ArgumentException("SemesterYearCode should be in the format [YYYYS]!");
+            }
+            Year = Convert.ToInt32(yearSemesterCode.Substring(0, 4));
+            Semester = (Semester)Convert.ToInt32(yearSemesterCode.Substring(4, 1));
+        }
+
         public static string Code(Semester semester, int year)
         {
             return $"{year}{(int)semester}";

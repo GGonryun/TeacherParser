@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Class;
-using Utility.HTML;
-using HtmlAgilityPack;
-
+using Filtering;
+using Filtering.Specifications;
 namespace ClassStatistics
 {
 
@@ -12,23 +11,14 @@ namespace ClassStatistics
 
         static void Main(string[] args)
         {
-            Fetcher fetcher = new Fetcher(Source.Web, "https://sunspot.sdsu.edu/schedule/search?mode=search", "&period=20192&abbrev=CS");
-            string pattern = "//*[contains(concat(' ', @class, ' '), ' sectionMeeting ')]";
-            Parser parser = new Parser(fetcher.Document, pattern);
-            List<Meeting> meetings = new List<Meeting>();
+            SdsuMeetingsBuilder builder = new SdsuMeetingsBuilder("CS", "20182", "20183", "20184");
+            Meetings meetings = builder.GetResult();
+            IFilter<Meeting> filter = new MatchAllFilter<Meeting>();
 
-            foreach(var nodes in parser.Nodes)
-            {
-                Builder b = new SdsuMeetingBuilder((Semester)2, 2019, nodes);
-                Meeting m = b.GetResult();
-                meetings.Add(m);
-            }
 
-            foreach(var meeting in meetings)
-            {
-                Console.WriteLine(meeting.ToString());
-            }
-            
+            List<ISpecification<Meeting>> specs = new List<ISpecification<Meeting>>();
+            specs.Add(new CourseLevelSpecification(Level.Junior, (x, y) => x > y));
+            var filteredMeetings = filter.Filter(meetings, specs.ToArray());
         }
     }
 
