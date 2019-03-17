@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using Class;
 using HtmlAgilityPack;
 using Utility.HTML;
@@ -35,7 +36,14 @@ namespace Utility
         {
             string title = NodeInnerText("sectionFieldTitle");
             string code = NodeInnerText("sectionFieldCourse");
-            return new Course(title, code);
+            try
+            {
+                return new Course(title, code);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Day BuildDay()
@@ -53,14 +61,25 @@ namespace Utility
         public string BuildInstructor()
         {
             string instructor = NodeInnerText("sectionFieldInstructor");
-            return instructor;
+            string newer = instructor.Replace(System.Environment.NewLine, "");
+            string newest = Regex.Replace(newer, " {2,}", " & ");
+            return newest;
         }
 
         public Location BuildLocation()
         {
             HtmlNode  n = Parser.FindChildByClass(node, "sectionFieldSeats");
-            string ratio = n.SelectSingleNode("./text()[normalize-space()]").InnerText.ToString().Trim();
+            string ratio;
             int waitlist;
+
+            try
+            {
+                ratio = n.SelectSingleNode("./text()[normalize-space()]").InnerText.ToString().Trim();
+            }
+            catch
+            {
+                ratio = "0/0";
+            }
             try
             {
                 waitlist = Convert.ToInt32((NodeInnerText("sectionFieldSeats").Split(':'))[1]);
@@ -76,9 +95,13 @@ namespace Utility
         public int BuildSchedule()
         {
             int schedule;
+            string scheduleAsString = NodeInnerText("sectionFieldSched");
+            if(scheduleAsString == "")
+            {
+                return -1;
+            }
             try
             {
-                string scheduleAsString = NodeInnerText("sectionFieldSched");
                 schedule = Convert.ToInt32(scheduleAsString);
             }
             catch
@@ -90,7 +113,15 @@ namespace Utility
 
         public int BuildSection()
         {
-            return Convert.ToInt32(NodeInnerText("sectionFieldSec"));
+            try
+            {
+                return Convert.ToInt32(NodeInnerText("sectionFieldSec"));
+
+            }
+            catch
+            {
+                return -1;
+            }
         }
 
         public Time BuildTime()
@@ -100,7 +131,14 @@ namespace Utility
 
         public float BuildUnits()
         {
-            return float.Parse(NodeInnerText("sectionFieldUnits"));
+            try
+            {
+                return float.Parse(NodeInnerText("sectionFieldUnits"));
+            }
+            catch
+            {
+                return -1f;
+            }
         }
 
         public Meeting GetResult()

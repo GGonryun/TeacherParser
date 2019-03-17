@@ -11,7 +11,7 @@ namespace ClassStatistics
 
         static void Main(string[] args)
         {
-            SdsuMeetingsBuilder builder = new SdsuMeetingsBuilder("CS", "20182", "20183", "20184");
+            SdsuMeetingsBuilder builder = new SdsuMeetingsBuilder("BIOL", "20182", "20183", "20184");
             Meetings meetings = builder.GetResult();
             IFilter<Meeting> filter = new MatchAllFilter<Meeting>();
 
@@ -19,6 +19,11 @@ namespace ClassStatistics
             List<ISpecification<Meeting>> specs = new List<ISpecification<Meeting>>();
             specs.Add(new CourseLevelSpecification(Level.Junior, (x, y) => x > y));
             var filteredMeetings = filter.Filter(meetings, specs.ToArray());
+
+            foreach(Meeting meeting in filteredMeetings)
+            {
+                Console.WriteLine(meeting.ToString());
+            }
         }
     }
 

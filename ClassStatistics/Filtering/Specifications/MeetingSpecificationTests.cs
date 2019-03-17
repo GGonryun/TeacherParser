@@ -29,7 +29,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("0930-1045"),
                     new Day("TTH"),
-                    new Location(24, 13, 0, new Room("GMCS", 325)),
+                    new Location(24, 13, 0, new Room("GMCS", "325")),
                     "L. Beck"
                 ),
                 new Meeting(
@@ -41,7 +41,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1400-1515"),
                     new Day("MW"),
-                    new Location(80, -12, 0, new Room("GMCS", 214)),
+                    new Location(80, -12, 0, new Room("GMCS", "214")),
                     "S. Lindeneau"
                 ),
                 new Meeting(
@@ -53,7 +53,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1230-1345"),
                     new Day("TTH"),
-                    new Location(80, 4, 0, new Room("GMCS", 325)),
+                    new Location(80, 4, 0, new Room("GMCS", "325")),
                     "L. Riggins"
                 ),
                 new Meeting(
@@ -65,7 +65,7 @@ namespace Filtering
                     Format.Lecture,
                     new Time("1230-1345"),
                     new Day("TTH"),
-                    new Location(110, 12, 0, new Room("COM", 207)),
+                    new Location(110, 12, 0, new Room("COM", "207")),
                     "L. Riggins"
                 ),
                 new Meeting(

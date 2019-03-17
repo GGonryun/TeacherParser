@@ -9,7 +9,7 @@ namespace Class
         [Test]
         public void LocationArgumentsAreValid()
         {
-            Location l = new Location(100, 9, 0, new Room("GMCS", 101));
+            Location l = new Location(100, 9, 0, new Room("GMCS", "101"));
             Assert.AreEqual(100, l.Capacity);
             Assert.AreEqual("GMCS", l.Room.Building);
         }
@@ -24,7 +24,7 @@ namespace Class
         [Test]
         public void RatioArgumentsAreValid()
         {
-            Location l = new Location("-2/10", 0, new Room("COM", 200));
+            Location l = new Location("-2/10", 0, new Room("COM", "200"));
             Assert.AreEqual(-2, l.RemainingSeats);
             Assert.AreEqual(10, l.Capacity);
         }

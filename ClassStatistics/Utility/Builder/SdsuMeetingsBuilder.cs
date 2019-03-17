@@ -30,11 +30,44 @@ namespace ClassStatistics
                     Fetcher f = new Fetcher(Source.Web, $@"https://sunspot.sdsu.edu/schedule/search?mode=search&period={code}&abbrev={_majorAbbreviation}");
                     Parser p = new Parser(f.Document, Parser.SelectByClassPattern("sectionMeeting"));
 
+
+                    Course c_tmp = null;
+                    int sec_tmp = -1;
+                    int sch_tmp = -1;
+                    float u_tmp = 0f;
                     foreach(HtmlNode node in p.Nodes)
                     {
-                        IBuilder<Meeting> b = new SdsuMeetingBuilder(code, node);
-                        Meeting m = b.GetResult();
+                        SdsuMeetingBuilder b = new SdsuMeetingBuilder(code, node);
+
+                        Period period = b.BuildPeriod();
+                        Course course = b.BuildCourse() ?? c_tmp;
+                        int section = b.BuildSection();
+                        int schedule = b.BuildSchedule();
+                        float units = b.BuildUnits();
+                        Format format = b.BuildFormat();
+                        Time time = b.BuildTime();
+                        Day days = b.BuildDay();
+                        Location location = b.BuildLocation();
+                        string instructor = b.BuildInstructor();
+
+                        Meeting m = new Meeting(
+                            period,
+                            course,
+                            section == -1 ? sec_tmp : section,
+                            schedule == -1 ? sch_tmp : schedule,
+                            units < -1 ? u_tmp : units,
+                            format,
+                            time,
+                            days,
+                            location,
+                            instructor
+                            );
                         _meetings.Add(m);
+
+                        c_tmp = course;
+                        sec_tmp = section;
+                        sch_tmp = schedule;
+                        u_tmp = units;
                     }
                 }
             }

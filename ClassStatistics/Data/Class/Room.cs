@@ -3,10 +3,10 @@
     public class Room
     {
         public string Building { get; private set; }
-        public int Number { get; private set; }
+        public string Number { get; private set; }
         public string Code { get => $"{Building}-{Number}"; }
 
-        public Room(string building, int number)
+        public Room(string building, string number)
         {
             this.Building = building;
             this.Number = number;
@@ -16,14 +16,14 @@
         {
             if(code.Length < 1)
             {
-                this.Building = "N/A";
-                this.Number = -999;
+                this.Building = "";
+                this.Number = "";
             }
             else
             {
                 string[] values = code.Split('-');
                 this.Building = values[0];
-                this.Number = System.Convert.ToInt32(values[1]);
+                this.Number = values[1];
             }
             
         }
