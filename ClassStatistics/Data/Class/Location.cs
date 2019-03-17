@@ -1,4 +1,5 @@
-﻿namespace Class
+﻿
+namespace Class
 {
     public class Location
     {
@@ -8,6 +9,15 @@
         public float Ratio { get => (Capacity - RemainingSeats) / (float)Capacity; }
         public Room Room { get; private set; }
 
+        public Location(string ratio, int waitlist, Room room)
+        {
+            string[] value = ratio.Split("/");
+            this.Capacity = System.Convert.ToInt32(value[1]);
+            this.RemainingSeats = System.Convert.ToInt32(value[0]);
+            this.Waitlist = waitlist;
+            this.Room = room;
+        }
+
         public Location(int capacity, int remainingSeats, int waitlist, Room room)
         {
             if (capacity < remainingSeats)
@@ -16,11 +26,9 @@
             }
             this.Capacity = capacity;
             this.RemainingSeats = remainingSeats;
-            this.Room = room;
             this.Waitlist = waitlist;
+            this.Room = room;
         }
-        public Location(int seats, int remainingSeats, int waitlist, string building, int number) : this(seats, remainingSeats, waitlist, new Room(building, number))
-        {
-        }
+        
     }
 }
