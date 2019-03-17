@@ -1,7 +1,7 @@
 # TeacherParser
 Coming Soon!
 ## Usage
-
+You may build the project as an .exe or as a .dll. If you build the project as a .dll change all of the commands from `./TeacherParser.exe [args]` to `./dotnet TeacherParser.dll [args]` 
 ### Definitions:
 | Semester   |      ID      | 
 |:----------|:-------------:|
