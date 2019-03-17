@@ -57,6 +57,10 @@ namespace Class
 
         public override string ToString()
         {
+            if(Start == null || End == null)
+            {
+                return "";
+            }
             return $"{Start?.Hour:D2}{Start?.Minute:D2}-{End?.Hour:D2}{End?.Minute:D2}";
         }
 

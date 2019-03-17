@@ -16,8 +16,8 @@
         {
             if(code.Length < 1)
             {
-                this.Building = "";
-                this.Number = 0;
+                this.Building = "N/A";
+                this.Number = -999;
             }
             else
             {

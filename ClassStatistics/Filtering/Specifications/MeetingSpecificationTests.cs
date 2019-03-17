@@ -67,6 +67,18 @@ namespace Filtering
                     new Day("TTH"),
                     new Location(110, 12, 0, new Room("COM", 207)),
                     "L. Riggins"
+                ),
+                new Meeting(
+                    new Period(Semester.Spring, 2014),
+                    new Course("SPECIAL STUDY", "CS", 299),
+                    1,
+                    0,
+                    1.0f,
+                    Format.Discussion,
+                    new Time(""),
+                    new Day("Arranged"),
+                    new Location(5, 0, 0, new Room("")),
+                    "L. Beck"
                 )
             };
 
@@ -77,14 +89,14 @@ namespace Filtering
         public void InstructorNameSpecification()
         {
             IEnumerable<Meeting> teachers = filter.Filter(meetings, new InstructorNameSpecification("L. Beck"));
-            Assert.AreEqual(1, teachers.Count());
+            Assert.AreEqual(2, teachers.Count());
         }
 
         [Test]
         public void CourseSubjectSpecification()
         {
             IEnumerable<Meeting> subject = filter.Filter(meetings, new CourseSubjectSpecification("CS"));
-            Assert.AreEqual(4, subject.Count());
+            Assert.AreEqual(5, subject.Count());
         }
 
         [Test]
@@ -121,7 +133,7 @@ namespace Filtering
         {
             ISpecification<Meeting> specs = new CourseLevelSpecification(Level.Sophomore, (x, y) => x >= y);
             IEnumerable<Meeting> course = filter.Filter(meetings, specs);
-            Assert.AreEqual(1, course.Count());
+            Assert.AreEqual(2, course.Count());
         }
 
         [Test]
@@ -129,7 +141,7 @@ namespace Filtering
         {
             ISpecification<Meeting> specs = new IgnoreCoursesSpecification(new List<Course>() { new Course("INTRO COMPUTER PROGRAM", "CS", 107) });
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
-            Assert.AreEqual(2, courses.Count());
+            Assert.AreEqual(3, courses.Count());
         }
 
         [Test]
@@ -178,7 +190,7 @@ namespace Filtering
         {
             ISpecification<Meeting> specs = new TimeNonOverlappingSpecification(new Time("1330-1430"));
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
-            Assert.AreEqual(1, courses.Count());
+            Assert.AreEqual(2, courses.Count());
         }
 
         [Test]

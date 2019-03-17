@@ -59,6 +59,10 @@ namespace Class
 
         void CodeToDaysOfWeek(string code)
         {
+            if(code.Equals("Arranged"))
+            {
+                return;
+            }
             Stack<IsoDayOfWeek> stack = new Stack<IsoDayOfWeek>();
             for (int i = code.Length - 1; i >= 0; i--)
             {
