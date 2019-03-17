@@ -8,7 +8,7 @@ namespace Class
     {
         public Semester Semester { get; private set; }
         public int Year { get; private set; }
-        
+
         public Period(Semester semester, int year)
         {
             this.Semester = semester;
@@ -27,6 +27,46 @@ namespace Class
             }
             Year = Convert.ToInt32(yearSemesterCode.Substring(0, 4));
             Semester = (Semester)Convert.ToInt32(yearSemesterCode.Substring(4, 1));
+        }
+
+        public static bool operator <(Period p1, Period p2)
+        {
+            if(p1.Year < p2.Year)
+            {
+                return true;
+            }
+            else if(p1.Year == p2.Year && (int)p1.Semester < (int)p2.Semester) 
+            {
+                return true;
+            }
+            return false;
+
+        }
+        public static bool operator >(Period p1, Period p2)
+        {
+            if (p1.Year > p2.Year)
+            {
+                return true;
+            }
+            else if (p1.Year == p2.Year && (int)p1.Semester > (int)p2.Semester)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static Period operator ++(Period p1)
+        {
+            int year = p1.Year;
+            int semester = (int)p1.Semester;
+
+            semester += 1;
+            if(semester > 4)
+            {
+                year++;
+                semester = 1;
+            }
+            return new Period(semester, year);
         }
 
         public static string Code(Semester semester, int year)

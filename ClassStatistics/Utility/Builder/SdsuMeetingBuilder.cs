@@ -14,6 +14,12 @@ namespace Utility
         HtmlNode node;
         Period period;
         
+        public SdsuMeetingBuilder(Period period, HtmlNode node)
+        {
+            this.period = period;
+            this.node = node;
+        }
+
         public SdsuMeetingBuilder(Semester semester, int year, HtmlNode node)
         {
             this.node = node;
