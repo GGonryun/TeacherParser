@@ -18,5 +18,10 @@ namespace Class
         public Period(int semester, int year) : this((Semester)semester, year)
         {
         }
+
+        public static string Code(Semester semester, int year)
+        {
+            return $"{year}{(int)semester}";
+        }
     }
 }

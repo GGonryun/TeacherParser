@@ -17,6 +17,10 @@ namespace Utility.HTML
             this.node = node;
             period = new Period(semester, year);
         }
+        public SdsuMeetingBuilder(string semesterYearCode, HtmlNode node)
+        {
+            //TODO: this.
+        }
 
         public override Period BuildPeriod()
         {
