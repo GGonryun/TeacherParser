@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Class;
+﻿using Class;
 using NodaTime;
+using System;
 
 namespace Filtering.Specifications
 {
@@ -38,14 +36,14 @@ namespace Filtering.Specifications
 
             if(Math.Abs(start.Hours) <= _range.Hour)
             {
-                if (MathF.Abs(start.Minutes) <= _range.Minute)
+                if (Math.Abs(start.Minutes) <= _range.Minute)
                 {
                     return true;
                 }
             }
             else if (Math.Abs(end.Hours) <= _range.Hour)
             {
-                if (MathF.Abs(end.Minutes) <= _range.Minute)
+                if (Math.Abs(end.Minutes) <= _range.Minute)
                 {
                     return true;
                 }

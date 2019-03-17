@@ -123,7 +123,7 @@ namespace Filtering
         [Test]
         public void CourseLevelSpecificationEasier()
         {
-            ISpecification<Meeting> specs = new CourseLevelSpecification(Level.Sophomore, (x, y) => x < y);
+            ISpecification<Meeting> specs = new CourseLevelSpecification(x => x < (int)Level.Sophomore);
             IEnumerable<Meeting> course = filter.Filter(meetings, specs);
             Assert.AreEqual(3, course.Count());
         }
@@ -131,7 +131,7 @@ namespace Filtering
         [Test] 
         public void CourseLevelSpecificationHarder()
         {
-            ISpecification<Meeting> specs = new CourseLevelSpecification(Level.Sophomore, (x, y) => x >= y);
+            ISpecification<Meeting> specs = new CourseLevelSpecification(x => x > (int)Level.Sophomore);
             IEnumerable<Meeting> course = filter.Filter(meetings, specs);
             Assert.AreEqual(2, course.Count());
         }
@@ -156,15 +156,14 @@ namespace Filtering
         [Test]
         public void TimeGreaterThanSpecification()
         {
-            Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> comparator = (x, y) => x > y;
 
             //Returns all classes that end after 12:45pm.
-            ISpecification<Meeting> specs = new TimeSpecification(false, new NodaTime.LocalTime(12, 45), comparator);
+            ISpecification<Meeting> specs = new TimeSpecification(false, endTime => endTime > new NodaTime.LocalTime(12, 45));
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
             Assert.AreEqual(3, courses.Count());
 
             //Returns all classes that start after 12:45pm.
-            ISpecification<Meeting> specs2 = new TimeSpecification(true, new NodaTime.LocalTime(12, 45), comparator);
+            ISpecification<Meeting> specs2 = new TimeSpecification(true, startTime => startTime > new NodaTime.LocalTime(12, 45));
             IEnumerable<Meeting> courses2 = filter.Filter(meetings, specs2);
             Assert.AreEqual(1, courses2.Count());
         }
@@ -172,15 +171,14 @@ namespace Filtering
         [Test]
         public void TimeLessThanSpecification()
         {
-            Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> comparator = (x, y) => x < y;
 
             //Returns all classes that end before 12:45pm.
-            ISpecification<Meeting> specs = new TimeSpecification(false, new NodaTime.LocalTime(12, 45), comparator);
+            ISpecification<Meeting> specs = new TimeSpecification(false, endTime => endTime < new NodaTime.LocalTime(12, 45));
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
             Assert.AreEqual(1, courses.Count());
 
             //Returns all classes that start before 12:45pm.
-            ISpecification<Meeting> specs2 = new TimeSpecification(true, new NodaTime.LocalTime(12, 45), comparator);
+            ISpecification<Meeting> specs2 = new TimeSpecification(true, startTime => startTime < new NodaTime.LocalTime(12, 45));
             IEnumerable<Meeting> courses2 = filter.Filter(meetings, specs2);
             Assert.AreEqual(3, courses2.Count());
         }
@@ -196,13 +194,13 @@ namespace Filtering
         [Test]
         public void ClassRatioNotFull()
         {
-            ISpecification<Meeting> specs = new ClassRatioSpecification(1.0f, (x, y) => x < y);
+            ISpecification<Meeting> specs = new ClassRatioSpecification(ratio => ratio < 1.0f);
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
             Assert.AreEqual(3, courses.Count());
         }
         public void ClassRatioMoreThan50Percent()
         {
-            ISpecification<Meeting> specs = new ClassRatioSpecification(.5f, (x, y) => x > y);
+            ISpecification<Meeting> specs = new ClassRatioSpecification(ratio => ratio > .5f);
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
             Assert.AreEqual(3, courses.Count());
         }

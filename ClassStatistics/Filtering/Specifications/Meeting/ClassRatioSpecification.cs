@@ -1,24 +1,20 @@
 ﻿using Class;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Filtering.Specifications
 {
     class ClassRatioSpecification : ISpecification<Meeting>
     {
-        private readonly Func<float, float, bool> _comparator;
-        private readonly float _ratio;
+        private readonly Predicate<float> _comparator;
 
-        public ClassRatioSpecification(float ratio, Func<float, float, bool> comparator)
+        public ClassRatioSpecification(Predicate<float> compareToRatio)
         {
-            _ratio = ratio;
-            _comparator = comparator;
+            _comparator = compareToRatio;
         }
 
 public bool Satisfied(Meeting item)
         {
-            return _comparator(item.Location.Ratio, _ratio);
+            return _comparator(item.Location.Ratio);
         }
     }
 }
