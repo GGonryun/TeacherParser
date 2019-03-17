@@ -30,5 +30,10 @@ namespace Class
             Instructor = instructor ?? throw new ArgumentNullException(nameof(instructor));
         }
 
+
+        public override string ToString()
+        {
+            return $"{Course.Code}: {Course.Title} at {Time.ToString()} on {Day.Code} in {Location.Room.Code} with {Instructor}";
+        }
     }
 }

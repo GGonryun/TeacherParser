@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Class
 {
@@ -23,7 +24,8 @@ namespace Class
             this.Title = title;
             string[] parts = code.Split('-');
             Subject = parts[0];
-            Number = Convert.ToInt32(parts[1]);
+            string parsedNumberOnly = Regex.Replace(parts[1], "[^0-9]+", string.Empty);
+            Number = Convert.ToInt32(parsedNumberOnly);
         }
 
 

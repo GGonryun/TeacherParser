@@ -9,12 +9,12 @@ namespace Utility.HTML
 {
     public class SdsuMeetingBuilder : Builder
     {
-        HtmlNodeCollection nodes;
+        HtmlNode node;
         Period period;
         
-        public SdsuMeetingBuilder(Semester semester, int year, HtmlNodeCollection nodes)
+        public SdsuMeetingBuilder(Semester semester, int year, HtmlNode node)
         {
-            this.nodes = nodes;
+            this.node = node;
             period = new Period(semester, year);
         }
 
@@ -50,7 +50,7 @@ namespace Utility.HTML
 
         public override Location BuildLocation()
         {
-            HtmlNode  n = Parser.FindChildByClass(nodes, "sectionFieldSeats");
+            HtmlNode  n = Parser.FindChildByClass(node, "sectionFieldSeats");
             string ratio = n.SelectSingleNode("./text()[normalize-space()]").InnerText.ToString().Trim();
             int waitlist;
             try
@@ -67,7 +67,17 @@ namespace Utility.HTML
 
         public override int BuildSchedule()
         {
-            return Convert.ToInt32(NodeInnerText("sectionFieldSched"));
+            int schedule;
+            try
+            {
+                string scheduleAsString = NodeInnerText("sectionFieldSched");
+                schedule = Convert.ToInt32(scheduleAsString);
+            }
+            catch
+            {
+                schedule = 0;
+            }
+            return schedule;
         }
 
         public override int BuildSection()
@@ -102,9 +112,9 @@ namespace Utility.HTML
         }
 
         private string NodeInnerText(string classAttribute)
-        {
-            HtmlNode node = Parser.FindChildByClass(nodes, classAttribute);
-            return node.InnerText.Trim();
+         {
+            HtmlNode n = Parser.FindChildByClass(node, classAttribute);
+            return n.InnerText.Trim();
         }
 
       

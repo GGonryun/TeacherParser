@@ -8,8 +8,8 @@ namespace Class
 {
     public class Time
     {
-        public LocalTime Start { get; private set; }
-        public LocalTime End { get; private set; }
+        public LocalTime? Start { get; private set; }
+        public LocalTime? End { get; private set; }
 
         public Time(LocalTime start, LocalTime end)
         {
@@ -19,16 +19,25 @@ namespace Class
 
         public Time(string timeBlock)
         {
-            string[] times = timeBlock.Split('-');
-            Start = ConvertToLocalTime(times[0]);
-            End = ConvertToLocalTime(times[1]);
+            if(timeBlock.Length < 1)
+            {
+                Start = null;
+                End = null;
+            }
+            else
+            {
+                string[] times = timeBlock.Split('-');
+                Start = ConvertToLocalTime(times[0]);
+                End = ConvertToLocalTime(times[1]);
+            }
+            
         }
 
-        private LocalTime ConvertToLocalTime(string value)
+        private LocalTime? ConvertToLocalTime(string value)
         {
             if(value.Length != 4)
             {
-                throw new ArgumentException("Invalid time code! The string must be of length 4!");
+                return null;
             }
             int hour = Convert.ToInt32(value.Substring(0, 2));
             int minutes = Convert.ToInt32(value.Substring(2, 2));
@@ -48,7 +57,7 @@ namespace Class
 
         public override string ToString()
         {
-            return $"{Start.Hour:D2}{Start.Minute:D2}-{End.Hour:D2}{End.Minute:D2}";
+            return $"{Start?.Hour:D2}{Start?.Minute:D2}-{End?.Hour:D2}{End?.Minute:D2}";
         }
 
         public bool Contains(LocalTime a)

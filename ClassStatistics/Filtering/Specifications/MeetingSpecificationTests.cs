@@ -144,7 +144,7 @@ namespace Filtering
         [Test]
         public void TimeGreaterThanSpecification()
         {
-            Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> comparator = (x, y) => x > y;
+            Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> comparator = (x, y) => x > y;
 
             //Returns all classes that end after 12:45pm.
             ISpecification<Meeting> specs = new TimeSpecification(false, new NodaTime.LocalTime(12, 45), comparator);
@@ -160,7 +160,7 @@ namespace Filtering
         [Test]
         public void TimeLessThanSpecification()
         {
-            Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> comparator = (x, y) => x < y;
+            Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> comparator = (x, y) => x < y;
 
             //Returns all classes that end before 12:45pm.
             ISpecification<Meeting> specs = new TimeSpecification(false, new NodaTime.LocalTime(12, 45), comparator);

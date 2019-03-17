@@ -14,20 +14,20 @@ namespace Class
             LocalTime start = new LocalTime(0, 59);
             LocalTime end = new LocalTime(13, 2);
             Time t = new Time(start, end);
-            Assert.AreEqual(start.Hour, t.Start.Hour);
-            Assert.AreEqual(start.Minute, t.Start.Minute);
-            Assert.AreEqual(end.Hour, t.End.Hour);
-            Assert.AreEqual(end.Minute, t.End.Minute);
+            Assert.AreEqual(start.Hour, t.Start?.Hour);
+            Assert.AreEqual(start.Minute, t.Start?.Minute);
+            Assert.AreEqual(end.Hour, t.End?.Hour);
+            Assert.AreEqual(end.Minute, t.End?.Minute);
         }
         [Test]
 
         public void CreateBlockTimeRange()
         {
             Time t = new Time("0930-1945");
-            Assert.AreEqual(9, t.Start.Hour);
-            Assert.AreEqual(30, t.Start.Minute);
-            Assert.AreEqual(19, t.End.Hour);
-            Assert.AreEqual(45, t.End.Minute);
+            Assert.AreEqual(9, t.Start?.Hour);
+            Assert.AreEqual(30, t.Start?.Minute);
+            Assert.AreEqual(19, t.End?.Hour);
+            Assert.AreEqual(45, t.End?.Minute);
         }
 
         [Test]

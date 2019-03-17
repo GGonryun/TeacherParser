@@ -35,14 +35,11 @@ namespace Utility.HTML
             return Document.DocumentNode.SelectNodes($"{Pattern}");
         }
 
-        public static HtmlNode FindChildByClass(HtmlNodeCollection ns, string classAttribute)
+        public static HtmlNode FindChildByClass(HtmlNode node, string classAttribute)
         {
-            foreach (HtmlNode node in ns)
-            {
-                HtmlNode n = node.SelectSingleNode($"./*[contains(concat(' ', @class, ' '), ' {classAttribute} ')]");
-                if (n != null)
-                    return n;
-            }
+            HtmlNode n = node.SelectSingleNode($"./*[contains(concat(' ', @class, ' '), ' {classAttribute} ')]");
+            if (n != null)
+                return n;
             return null;
         }
 

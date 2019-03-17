@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Filtering\Specifications\Nodes\" />
-    <Folder Include="Utility\HTML\Builder\UniversityArguments\" />
   </ItemGroup>
 
 </Project>

@@ -20,7 +20,7 @@ namespace Utility.HTML
             fetcher = new Fetcher(Source.Local, CONSTANTS.SdsuHTMLPath, "");
             string pattern = "//div[contains(concat(' ', @class, ' '), ' sectionMeeting ')]";
             parser = new Parser(fetcher.Document, pattern);
-            builder = new SdsuMeetingBuilder(Semester.Fall, 2014, parser.Nodes);
+            builder = new SdsuMeetingBuilder(Semester.Fall, 2014, parser.Nodes[0]);
         }
 
         [Test]

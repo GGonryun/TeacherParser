@@ -23,8 +23,18 @@ namespace Filtering.Specifications
         
         public bool Satisfied(Meeting item)
         {
-            NodaTime.Period start = NodaTime.Period.Between(item.Time.Start, _time.End);
-            NodaTime.Period end = NodaTime.Period.Between(_time.Start, item.Time.End);
+            if(item.Time.Start == null || item.Time.End == null)
+            {
+                return false;
+            }
+
+            NodaTime.LocalTime startTime = item.Time.Start ?? default(NodaTime.LocalTime);
+            NodaTime.LocalTime endTime = item.Time.End ?? default(NodaTime.LocalTime);
+            NodaTime.LocalTime _startTime = _time.Start ?? default(NodaTime.LocalTime);
+            NodaTime.LocalTime _endTime = _time.End ?? default(NodaTime.LocalTime);
+
+            NodaTime.Period start = NodaTime.Period.Between(startTime, _endTime);
+            NodaTime.Period end = NodaTime.Period.Between(_startTime, endTime);
 
             if(Math.Abs(start.Hours) <= _range.Hour)
             {

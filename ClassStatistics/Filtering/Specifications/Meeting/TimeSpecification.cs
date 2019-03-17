@@ -9,15 +9,15 @@ namespace Filtering.Specifications
     {
 
         private readonly NodaTime.LocalTime _time;
-        private readonly Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> _comparator;
+        private readonly Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> _comparator;
         private readonly bool _checkAgainstStartTime;
-        public TimeSpecification(bool checkAgainstStartTime, NodaTime.LocalTime time, Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> comparator)
+        public TimeSpecification(bool checkAgainstStartTime, NodaTime.LocalTime time, Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> comparator)
         {
             _checkAgainstStartTime = checkAgainstStartTime;
             _time = time;
             _comparator = comparator;
         }
-        public TimeSpecification(bool checkAgainstStartTime, Meeting meeting, Func<NodaTime.LocalTime, NodaTime.LocalTime, bool> comparator) : this(checkAgainstStartTime, meeting.Time.End, comparator)
+        public TimeSpecification(bool checkAgainstStartTime, Meeting meeting, Func<NodaTime.LocalTime?, NodaTime.LocalTime, bool> comparator) : this(checkAgainstStartTime, meeting.Time.End.GetValueOrDefault(), comparator)
         {
         }
 
