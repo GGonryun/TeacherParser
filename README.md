@@ -1,7 +1,10 @@
 # TeacherParser
 Coming Soon!
 ## Usage
-You may build the project as an .exe or as a .dll. If you build the project as a .dll change all of the commands from `./TeacherParser.exe [args]` to `./dotnet TeacherParser.dll [args]` 
+You may build the project as an .exe or as a .dll. If you build the project as a .dll change all of the commands from `./TeacherParser.exe --s [value] --p [value] [args]` to `./dotnet TeacherParser.dll --s [value] --p [value] [args]` 
+
+All arguments must contain an **Subject argument** and a **Period argument**.
+
 ### Definitions:
 | Semester   |      ID      | 
 |:----------|:-------------:|
@@ -23,10 +26,6 @@ You may build the project as an .exe or as a .dll. If you build the project as a
 
 
 
-### Parsing
-All arguments must contain an Subject argument and a Period argument.
-
-`./TeacherParser.exe --s [value] --p [value] [args]`
 
 #### Subject Arguments
 | Argument | Description | Pattern|
@@ -48,23 +47,24 @@ All arguments must contain an Subject argument and a Period argument.
 - Example: `./TeacherParser.exe --s "CS" --pm 20162 20163 20171 20172 20173`
 - Example: `./TeacherParser.exe --s "MATH" --pr 20121-20192`
 
-### Fill Ratio Arguments (Inclusive)
+#### Fill Ratio Arguments (Inclusive)
 
 | Argument   |      Description      |  Pattern |
 |:----------|:-------------:|------:|
 | --maxRatio | select classes smaller than max ratio | float |
 | --minRatio | select classes larger than min ratio | float |
+###### Examples
 - Select classes that are not full: `./TeacherParser.exe --s "CS" --p 20153 --maxRatio 1.0` 
 - Select classes that are at least 25% full: `./TeacherParser.exe --s "CS" --p 20153 --minLevel 0.25`
 
 
-### Level Arguments (Inclusive)
+#### Level Arguments (Inclusive)
 
 | Argument   |      Description      |  Pattern |
 |:----------|:-------------:|------:|
 | --maxLevel | select classes w/ levels lower than max | float |
 | --minRatio | select classes w/ levels higher than min | float |
-
+###### Examples
 - Select classes below sophomore level: `./TeacherParser.exe --s "CS" --p 20153 --maxLevel 200`
 - Select classes above 500 level: `./TeacherParser.exe --s "CS" --p 20153 --minLevel 450`
 
