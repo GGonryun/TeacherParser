@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Class
 {
-    class Meetings
+    public class Meetings : IEnumerable<Meeting>
     {
         List<Meeting> meetings;
 
@@ -18,10 +19,22 @@ namespace Class
             meetings.Add(meeting);
         }
 
-        public void Filter()
+        public void Add(List<Meeting> meetings)
         {
-
+            meetings.AddRange(meetings);
         }
 
+        public IEnumerator<Meeting> GetEnumerator()
+        {
+            foreach(Meeting meeting in meetings)
+            {
+                yield return meeting;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator() as IEnumerator;
+        }
     }
 }
