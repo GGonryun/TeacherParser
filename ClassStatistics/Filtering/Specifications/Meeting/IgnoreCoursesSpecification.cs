@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Filtering.Specifications
 {
-    class IgnoreCoursesSpecification : ISpecification<Meeting>
+    public class IgnoreCoursesSpecification : ISpecification<Meeting>
     {
         private readonly List<Course> _ignoreCourses;
 

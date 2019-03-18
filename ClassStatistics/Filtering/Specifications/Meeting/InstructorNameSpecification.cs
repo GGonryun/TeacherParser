@@ -15,7 +15,7 @@ namespace Filtering.Specifications
 
         public bool Satisfied(Meeting item)
         {
-            return _matchAgainst(item.Instructor);
+            return _matchAgainst(item.Instructor.ToUpper());
         }
     }
 }

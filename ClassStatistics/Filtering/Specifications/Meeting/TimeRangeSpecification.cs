@@ -9,6 +9,14 @@ namespace Filtering.Specifications
         private readonly LocalTime _range;
         private readonly Time _time;
 
+        public TimeRangeSpecification(string range, Time time)
+        {
+            int hour = Convert.ToInt32(range.Substring(0, 2));
+            int minute = Convert.ToInt32(range.Substring(2, 2));
+            _range = new LocalTime(hour, minute);
+            _time = time;
+        }
+
         public TimeRangeSpecification(LocalTime range, Time time)
         {
             _range = range;
