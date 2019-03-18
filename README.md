@@ -74,17 +74,6 @@ Arguments that contain spaces must be held together using quotes, see examples b
 - Select classes below sophomore level: `./TeacherParser.exe --s "CS" --p 20153 --maxLevel 200`
 - Select classes above 500 level: `./TeacherParser.exe --s "CS" --p 20153 --minLevel 450`
 
-#### Level Arguments (Inclusive)
-
-| Argument   |      Description      |  Pattern |
-|:----------|:-------------:|------:|
-| --maxLevel | select classes w/ levels lower than max | float |
-| --minLevel | select classes w/ levels higher than min | float |
-###### Examples
-- Select classes below sophomore level: `./TeacherParser.exe --s CS --p 20153 --maxLevel 200`
-- Select classes above 500 level: `./TeacherParser.exe --s CS --p 20153 --minLevel 450`
-
-
 #### Course Arguments
 | Argument | Description | Pattern |
 |:---------|:----------------:|----------:|
@@ -128,7 +117,7 @@ Arguments that contain spaces must be held together using quotes, see examples b
 - Selects all classes that start after 9 AM. `./TeacherParser.exe --s PSY --p 20163 --start-after 0900`
 - Selects all classes that end before 6 PM. `./TeacherParser.exe --s PSY --p 20142 --end-before 1800`
 
-#### Lecture Style Arguments
+#### Teaching Format Arguments
 | Argument | Description | Pattern |
 |:---------|:----------------:|:----------:|
 | --format | selects all classes that match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
