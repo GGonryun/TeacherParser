@@ -146,21 +146,21 @@ namespace ClassStatistics
                         int ea_hour = Convert.ToInt32(endAfter.Substring(0, 2));
                         int ea_minute = Convert.ToInt32(endAfter.Substring(2, 2));
                         NodaTime.LocalTime ea_time = new NodaTime.LocalTime(ea_hour, ea_minute);
-                        specs.Add(new TimeSpecification(true, time => time >= ea_time));
+                        specs.Add(new TimeSpecification(false, time => time >= ea_time));
                         break;
                     case "--start-before":
                         string startBefore = args[++i];
                         int sb_hour = Convert.ToInt32(startBefore.Substring(0, 2));
                         int sb_minute = Convert.ToInt32(startBefore.Substring(2, 2));
                         NodaTime.LocalTime sb_time = new NodaTime.LocalTime(sb_hour, sb_minute);
-                        specs.Add(new TimeSpecification(true, time => time >= sb_time));
+                        specs.Add(new TimeSpecification(true, time => time <= sb_time));
                         break;
                     case "--end-before":
                         string endBefore = args[++i];
                         int eb_hour = Convert.ToInt32(endBefore.Substring(0, 2));
                         int eb_minute = Convert.ToInt32(endBefore.Substring(2, 2));
                         NodaTime.LocalTime eb_time = new NodaTime.LocalTime(eb_hour, eb_minute);
-                        specs.Add(new TimeSpecification(true, time => time >= eb_time));
+                        specs.Add(new TimeSpecification(false, time => time <= eb_time));
                         break;
                     //=== FORMAT ARGUMENTS ===//
                     case "--format":
