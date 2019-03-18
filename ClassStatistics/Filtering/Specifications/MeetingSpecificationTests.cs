@@ -62,7 +62,7 @@ namespace Filtering
                     1,
                     20900,
                     3.0f,
-                    Format.Lecture,
+                    Format.Activity,
                     new Time("1230-1345"),
                     new Day("TTH"),
                     new Location(110, 12, 0, new Room("COM", "207")),
@@ -88,7 +88,7 @@ namespace Filtering
         [Test]
         public void InstructorNameSpecification()
         {
-            IEnumerable<Meeting> teachers = filter.Filter(meetings, new InstructorNameSpecification("L. Beck"));
+            IEnumerable<Meeting> teachers = filter.Filter(meetings, new InstructorNameSpecification(instructor => instructor.Contains("L. Beck")));
             Assert.AreEqual(2, teachers.Count());
         }
 
@@ -113,7 +113,7 @@ namespace Filtering
             {
                 new CourseSubjectSpecification("CS"),
                 new CourseNumberSpecification(107),
-                new InstructorNameSpecification("L. Riggins")
+                new InstructorNameSpecification(instructor => instructor.Contains("L. Riggins"))
             };
 
             IEnumerable<Meeting> course = filter.Filter(meetings, specs);
@@ -187,6 +187,22 @@ namespace Filtering
         public void TimeNonOverlapping()
         {
             ISpecification<Meeting> specs = new TimeNonOverlappingSpecification(new Time("1330-1430"));
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(2, courses.Count());
+        }
+
+        [Test] 
+        public void MatchFormat()
+        {
+            ISpecification<Meeting> specs = new FormatTypeSpecification(format => format == Format.Lecture);
+            IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
+            Assert.AreEqual(3, courses.Count());
+        }
+
+        [Test]
+        public void DoesNotMatchFormat()
+        {
+            ISpecification<Meeting> specs = new FormatTypeSpecification(format => format != Format.Lecture);
             IEnumerable<Meeting> courses = filter.Filter(meetings, specs);
             Assert.AreEqual(2, courses.Count());
         }

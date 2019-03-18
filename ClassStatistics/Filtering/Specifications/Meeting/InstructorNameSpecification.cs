@@ -1,21 +1,21 @@
 ﻿using Class;
-
+using System;
 
 namespace Filtering.Specifications
 {
     public class InstructorNameSpecification : ISpecification<Meeting>
     {
 
-        private readonly string _instructorName;
+        private readonly Predicate<string> _matchAgainst;
 
-        public InstructorNameSpecification(string instructorName)
+        public InstructorNameSpecification(Predicate<string> matchAgainst)
         {
-            _instructorName = instructorName;
+            _matchAgainst = matchAgainst;
         }
 
         public bool Satisfied(Meeting item)
         {
-            return item.Instructor == _instructorName;
+            return _matchAgainst(item.Instructor);
         }
     }
 }

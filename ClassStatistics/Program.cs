@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using Class;
 using Filtering;
 using Filtering.Specifications;
+using Utility;
+
 namespace ClassStatistics
 {
-
+    public enum School { SDSU }
     public class Program
     {
         static void Main(string[] args)
         {
+            School school = School.SDSU;
+
             List<ISpecification<Meeting>> specs = new List<ISpecification<Meeting>>();
             List<string> subjects = new List<string>();
             List<Period> periods = new List<Period>();
@@ -25,11 +29,11 @@ namespace ClassStatistics
                         break;
                     case "--sm":
                         i++;
-                        while (args[i] != null || args[i][0] != '-')
+                        while (args[i] != null && (args[i])[0] != '-')
                         {
-                            subjects.Add(args[i]);
-                            i++;
+                            subjects.Add(args[i++]);
                         }
+                        i--;
                         break;
                     //=== PERIOD ARGUMENTS ===//
                     case "--p":
@@ -49,11 +53,12 @@ namespace ClassStatistics
                         break;
                     case "--pm":
                         i++;
-                        while (args[i] != null || args[i][0] != '-')
+                        while (args[i] != null && (args[i])[0] != '-')
                         {
                             periods.Add(new Period(args[i]));
                             i++;
                         }
+                        i--;
                         break;
                     //=== FILL RATIO ARGUMENTS ===//
                     case "--maxRatio":
@@ -80,7 +85,7 @@ namespace ClassStatistics
                 }
             }
 
-            SdsuMeetingsBuilder builder = new SdsuMeetingsBuilder(subjects, periods);
+            IBuilder<Meetings> builder = GetBuilder(school, subjects, periods);
             Meetings meetings = builder.GetResult();
 
             IFilter<Meeting> filter = new MatchAllFilter<Meeting>();
@@ -91,7 +96,20 @@ namespace ClassStatistics
                 Console.WriteLine(meeting.ToString());
             }
         }
+
+        public static IBuilder<Meetings> GetBuilder(School school, List<string> subjects, List<Period> periods)
+        {
+            switch (school)
+            {
+                case School.SDSU:
+                    return new SdsuMeetingsBuilder(subjects, periods);
+            }
+            return null;
+        }
     }
+
+
+   
 
 
 }
