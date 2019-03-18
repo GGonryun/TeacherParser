@@ -1,8 +1,23 @@
 # TeacherParser
 Coming Soon!
 ## Usage
+You may build the project as an .exe or as a .dll. If you build the project as a .dll change all of the commands from `./TeacherParser.exe --s [value] --p [value] [args]` to `./dotnet TeacherParser.dll --s [value] --p [value] [args]` 
+
+All arguments must contain an **Subject argument** and a **Period argument**.
+
+Arguments that contain spaces must be held together using quotes, see examples below.
 
 ### Definitions:
+- Course Subject Codes can be found here: `https://sunspot.sdsu.edu/schedule/search`
+- Course Code Pattern => XYZ-###
+- Example => COM-101 | CS-570 | MATH-251 | "A D-200"
+- Period Code Pattern => YYYYS
+- Example => 20183 (Fall 2018 semester).
+- Hour Code Pattern => HHMM
+- Example => 1300
+- Hour Range Code Pattern => HHMM-HHMM
+- Example => 0900-1700
+
 | Semester   |      ID      | 
 |:----------|:-------------:|
 | Spring | 1 | 
@@ -10,8 +25,6 @@ Coming Soon!
 | Fall | 3 |
 | Winter | 4 |
 
-- Pattern => YYYYS
-- Example => 20183 (Fall 2018 semester).
 
 | Class   |      Level      | 
 |:----------|:-------------:|
@@ -20,13 +33,6 @@ Coming Soon!
 | Junior | 300 |
 | Senior | 400 |
 | Graduate | 600 |
-
-
-
-### Parsing
-All arguments must contain an Subject argument and a Period argument.
-
-`./TeacherParser.exe --s [value] --p [value] [args]`
 
 #### Subject Arguments
 | Argument | Description | Pattern|
@@ -48,29 +54,84 @@ All arguments must contain an Subject argument and a Period argument.
 - Example: `./TeacherParser.exe --s "CS" --pm 20162 20163 20171 20172 20173`
 - Example: `./TeacherParser.exe --s "MATH" --pr 20121-20192`
 
-### Fill Ratio Arguments (Inclusive)
+#### Fill Ratio Arguments (Inclusive)
 
 | Argument   |      Description      |  Pattern |
 |:----------|:-------------:|------:|
 | --maxRatio | select classes smaller than max ratio | float |
 | --minRatio | select classes larger than min ratio | float |
+###### Examples
 - Select classes that are not full: `./TeacherParser.exe --s "CS" --p 20153 --maxRatio 1.0` 
 - Select classes that are at least 25% full: `./TeacherParser.exe --s "CS" --p 20153 --minLevel 0.25`
 
-
-### Level Arguments (Inclusive)
+#### Level Arguments (Inclusive)
 
 | Argument   |      Description      |  Pattern |
 |:----------|:-------------:|------:|
 | --maxLevel | select classes w/ levels lower than max | float |
-| --minRatio | select classes w/ levels higher than min | float |
-
+| --minLevel | select classes w/ levels higher than min | float |
+###### Examples
 - Select classes below sophomore level: `./TeacherParser.exe --s "CS" --p 20153 --maxLevel 200`
 - Select classes above 500 level: `./TeacherParser.exe --s "CS" --p 20153 --minLevel 450`
 
+#### Level Arguments (Inclusive)
+
+| Argument   |      Description      |  Pattern |
+|:----------|:-------------:|------:|
+| --maxLevel | select classes w/ levels lower than max | float |
+| --minLevel | select classes w/ levels higher than min | float |
+###### Examples
+- Select classes below sophomore level: `./TeacherParser.exe --s CS --p 20153 --maxLevel 200`
+- Select classes above 500 level: `./TeacherParser.exe --s CS --p 20153 --minLevel 450`
 
 
+#### Course Arguments
+| Argument | Description | Pattern |
+|:---------|:----------------:|----------:|
+|--course-num| selects all classes that match course number | int |
+|--course-sub| selects all classes that match course subject | string |
 
+###### Examples
+- Select all 101 classes: `./TeacherParser.exe --s CS --p 20153 --course-num 101`
+- Select all CS classes: `./TeacherParser.exe --sm "A D" CS BIOL --p 20173 --course-sub CS`
 
+#### Ignore Class Arguments
+| Argument | Description | Pattern |
+|:---------|:----------------:|----------:|
+| --ignore | (multiargument) filters out the specified classes | class-code ... class-code |
+###### Examples
+- Select all CS classes that are not 101, 237, and 490: `./TeacherParser.exe --s CS --p 20173 --ignore CS-101 CS-237 CS-490`
 
+#### Instructor Arguments
+| Argument | Description | Pattern |
+|:---------|:----------------:|----------:|
+| --prof | selects classes that match a specific professor. | string |
+| --notprof | selects classes that do not contain the specified professor. | string |
 
+###### Examples
+- Selects all classes that are not taught by the specified professor: `./TeacherParser.exe --s CS --p 20184 --notprof "G. LEONARD"`
+- Selects all classes that are taught by the specified professor: `./TeacherParser.exe --s CS --p 20184 --prof "J. CARROLL"`
+
+#### Time Arguments (Inclusive)
+| Argument | Description | Pattern |
+|:---------|:----------------:|----------:|
+| --outside | selects classes are outside the specified time range. | "HHMM-HHMM" |
+| --within | selects classes that do not contain the specified professor. | "HHMM" "HHMM-HHMM" |
+| --start-after | selects classes that start after a specified time. | "HHMM" |
+| --end-after | selects classes that end after a specified time. | "HHMM" |
+| --start-before | selects classes that start before a specified time. | "HHMM" |
+| --end-before | selects classes that end before a specified time. | "HHMM" |
+
+###### Examples
+- Selects all classes that are within 30 minutes of another time range: `./TeacherParser.exe --s PSY --p 20134 --within 0030 1030-1230`
+- Selects all classes that are outside the time range. `./TeacherParser.exe --s PSY --p 20134 --outside 1030-1230`
+- Selects all classes that start after 9 AM. `./TeacherParser.exe --s PSY --p 20163 --start-after 0900`
+- Selects all classes that end before 6 PM. `./TeacherParser.exe --s PSY --p 20142 --end-before 1800`
+
+#### Lecture Style Arguments
+| Argument | Description | Pattern |
+|:---------|:----------------:|----------:|
+|--format | selects all classes that match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
+|--notformat | selects all classes that don't match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
+
+- Select all classes that follow a Lecture format: `./TeacherParser.exe --s CHEM --p 20184 --format lecture`.
