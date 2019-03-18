@@ -38,7 +38,7 @@ Arguments that contain spaces must be held together using quotes, see examples b
 | Argument | Description | Pattern|
 |:----------|:-------------:|------:|
 | --s | select a single subject | string |
-| --sm | select many subjects | string ... string |
+| --sm | (multiargument) select many subjects | string ... string |
 ###### Examples:
 - Example: `./TeacherParser.exe --p "20192" --s BIOL`
 - Example: `./TeacherParser.exe --p "20183" --sm COM PSY`
@@ -47,7 +47,7 @@ Arguments that contain spaces must be held together using quotes, see examples b
 | Argument   |      Description      |  Pattern |
 |:----------|:-------------:|------:|
 | --p | select a single period | YYYYS |
-| --pm | select many periods | YYYYS,YYYYS,...,YYYYS |
+| --pm | (multiargument) select many periods | YYYYS YYYYS ... YYYYS |
 | --pr | select a range of periods | YYYYS-YYYYS |
 
 ###### Examples
@@ -96,10 +96,12 @@ Arguments that contain spaces must be held together using quotes, see examples b
 |:---------|:----------------:|----------:|
 | --prof | selects classes that match a specific professor. | string |
 | --notprof | selects classes that do not contain the specified professor. | string |
+| --notprofs | (multiargument) selects classes that are not taught by any of the professors listed. | string ... string |
 
 ###### Examples
 - Selects all classes that are not taught by the specified professor: `./TeacherParser.exe --s CS --p 20184 --notprof "G. LEONARD"`
 - Selects all classes that are taught by the specified professor: `./TeacherParser.exe --s CS --p 20184 --prof "J. CARROLL"`
+- Selects all classes that are not taught by the specified professors: `./TeacherParser.exe --s CS --p 20192 --notprofs "G. LEONARD" "W. WANG" "K. LEVI"`
 
 #### Time Arguments (Inclusive)
 | Argument | Description | Pattern |
