@@ -130,8 +130,8 @@ Arguments that contain spaces must be held together using quotes, see examples b
 
 #### Lecture Style Arguments
 | Argument | Description | Pattern |
-|:---------|:----------------:|----------:|
-|--format | selects all classes that match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
-|--notformat | selects all classes that don't match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
+|:---------|:----------------:|:----------:|
+| --format | selects all classes that match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
+| --notformat | selects all classes that don't match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
 
 - Select all classes that follow a Lecture format: `./TeacherParser.exe --s CHEM --p 20184 --format lecture`.
