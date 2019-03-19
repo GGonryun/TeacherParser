@@ -1,7 +1,19 @@
 # TeacherParser
-Coming Soon!
-## Usage
+Track historical data about classes, find classes or sort through classes with much more power! Currently only implemented for **San Diego State University**. It has been used to help me determine some simple statistics about my school, classes, and professors.
+
+## Building
+
 You may build the project as an .exe or as a .dll. If you build the project as a .dll change all of the commands from `./TeacherParser.exe --s [value] --p [value] [args]` to `./dotnet TeacherParser.dll --s [value] --p [value] [args]` 
+
+[I recommended you use Warp when building the project to create a stand alone executable.](https://github.com/dgiagio/warp#windows-1)
+
+###### Example:
+- Build Release: `dotnet publish -c Release -r win10-x64`
+- Place warp-packer.exe in the base directory (where you git clone to).
+- Build Executbale: `.\warp-packer --arch windows-x64 --input_dir ClassStatistics/bin/Release/netcoreapp2.1/win10-x64/publish --exec ClassStatistics.exe --output ClassStatistics.exe`
+- The new executable will be in the same location as **warp-packer.exe**.
+
+## Usage
 
 All arguments must contain an **Subject argument** and a **Period argument**.
 
