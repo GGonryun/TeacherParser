@@ -119,7 +119,7 @@ Arguments that contain spaces must be held together using quotes, see examples b
 #### Time Arguments (Inclusive)
 | Argument | Description | Pattern |
 |:---------|:----------------:|----------:|
-| --outside | selects classes are outside the specified time range. | "HHMM-HHMM" |
+| --outside | selects classes that are outside the specified time range. | "HHMM-HHMM" |
 | --within | selects classes that do not contain the specified professor. | "HHMM" "HHMM-HHMM" |
 | --start-after | selects classes that start after a specified time. | "HHMM" |
 | --end-after | selects classes that end after a specified time. | "HHMM" |
