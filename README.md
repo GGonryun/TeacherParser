@@ -20,11 +20,10 @@ Arguments that contain spaces must be held together using quotes, see examples b
 
 | Semester   |      ID      | 
 |:----------|:-------------:|
-| Spring | 1 | 
-| Summer | 2 |
-| Fall | 3 |
-| Winter | 4 |
-
+| Winter | 1 |
+| Spring | 2 | 
+| Summer | 3 |
+| Fall | 4 |
 
 | Class   |      Level      | 
 |:----------|:-------------:|
@@ -34,14 +33,15 @@ Arguments that contain spaces must be held together using quotes, see examples b
 | Senior | 400 |
 | Graduate | 600 |
 
+
 #### Subject Arguments
 | Argument | Description | Pattern|
 |:----------|:-------------:|------:|
 | --s | select a single subject | string |
 | --sm | (multiargument) select many subjects | string ... string |
 ###### Examples:
-- Example: `./TeacherParser.exe --p "20192" --s BIOL`
-- Example: `./TeacherParser.exe --p "20183" --sm COM PSY`
+- Display all BIOL classes for the Spring 2019 semester: `./TeacherParser.exe --p "20192" --s BIOL`
+- Display all COM and BIOL classes for Fall 2018 `./TeacherParser.exe --p "20183" --sm COM PSY`
 
 #### Period Arguments
 | Argument   |      Description      |  Pattern |
@@ -51,8 +51,8 @@ Arguments that contain spaces must be held together using quotes, see examples b
 | --pr | select a range of periods | YYYYS-YYYYS |
 
 ###### Examples
-- Example: `./TeacherParser.exe --s "CS" --pm 20162 20163 20171 20172 20173`
-- Example: `./TeacherParser.exe --s "MATH" --pr 20121-20192`
+- Display all CS classes for Spring 2016, Summer 2016, Winter 2017, Spring 2017, Summer 2017: `./TeacherParser.exe --s "CS" --pm 20162 20163 20171 20172 20173`
+- Display all MATH classes from Winter 2012 to Spring 2019: `./TeacherParser.exe --s "MATH" --pr 20121-20192`
 
 #### Fill Ratio Arguments (Inclusive)
 
@@ -126,3 +126,13 @@ Arguments that contain spaces must be held together using quotes, see examples b
 | --notformat | selects all classes that don't match a specified format. |  \[Activity, Discussion, Laboratory, Lecture, Nontraditional, ROTC, Seminar, Supervised, None.] |
 
 - Select all classes that follow a Lecture format: `./TeacherParser.exe --s CHEM --p 20184 --format lecture`.
+
+#### Display Arguments
+| Argument | Description | Pattern|
+|:----------|:-------------:|------:|
+| --q or --quiet | do not display any classes to the screen. | no args |
+| --v or --verbose | display classes with extra verbosity.  | no args |
+| --popularity | display all professors and their popularity ranking  | no args |
+
+###### Examples:
+- This will not display any of the classes but prints out popularity rankings: `./TeacherParser.exe --p "20192" --s MKT --q --popularity`
