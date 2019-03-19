@@ -281,12 +281,12 @@ namespace ClassStatistics
                                                               Ratio = calculateRatio(kvp)
                                                           });
 
-                arguments.Output.Add($"====== PROFESSOR POPULARITY ======");
+                arguments.Output.Add($"====== PROFESSOR CLASS RATIOS ======");
                 foreach (var pair in popularity)
                 {
                     if (pair.Ratio == pair.Ratio)
                     {
-                        arguments.Output.Add($"{pair.Instructor}'s popularity: {100 * pair.Ratio:F2}");
+                        arguments.Output.Add($"{pair.Instructor}'s % of seats filled: {100 * pair.Ratio:F2}");
                     }
                 }
             }
