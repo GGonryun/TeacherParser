@@ -7,6 +7,7 @@ You may build the project as an .exe or as a .dll. If you build the project as a
 
 [I recommended you use Warp when building the project to create a stand alone executable.](https://github.com/dgiagio/warp#windows-1)
 
+[You can use the pre-built executable by clicking here!](./Exe/)
 ###### Example:
 - Build Release: `dotnet publish -c Release -r win10-x64`
 - Place warp-packer.exe in the base directory (where you git clone to).
