@@ -32,7 +32,7 @@ namespace Builder
                             continue;
                         }
 
-                        Fetcher f = new Fetcher(Source.Web, $@"https://sunspot.sdsu.edu/schedule/search?mode=search&period={period}&abbrev={major}");
+                        Fetcher f = new Fetcher(Source.Web, $@"https://sunspot.sdsu.edu/schedule/search?mode=search&period={period.Code()}&admin_unit=R&abbrev={major}");
                         Parser p = new Parser(f.Document, Parser.SelectByClassPattern("sectionMeeting"));
 
                         Course c_tmp = null;

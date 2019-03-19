@@ -69,9 +69,9 @@ namespace Class
             return new Period(semester, year);
         }
 
-        public static string Code(Semester semester, int year)
+        public string Code()
         {
-            return $"{year}{(int)semester}";
+            return $"{Year}{(int)Semester}";
         }
     }
 }
