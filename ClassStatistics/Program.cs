@@ -59,41 +59,6 @@ namespace ClassStatistics
 
         }
 
-        private static void PopulateOutput(Arguments arguments, IEnumerable<Meeting> filteredMeetings)
-        {
-            foreach (Meeting meeting in filteredMeetings)
-            {
-                PopulatePopularityDictionary(arguments.PopularityChart, meeting);
-
-                if (arguments.DisplayResults)
-                {
-                    arguments.Output.Add(meeting.Display(arguments.DisplayVerbose));
-                }
-
-            }
-
-            if (arguments.DisplayPopularity)
-            {
-                Func<KeyValuePair<string, Pair<float>>, float> calculateRatio = kvp => (kvp.Value.First - kvp.Value.Second) / kvp.Value.First;
-
-                var popularity = arguments.PopularityChart.OrderByDescending(kvp => calculateRatio(kvp))
-                                                          .Select(kvp => new
-                                                          {
-                                                              Instructor = kvp.Key,
-                                                              Ratio = calculateRatio(kvp)
-                                                          });
-
-                arguments.Output.Add($"====== PROFESSOR POPULARITY ======");
-                foreach (var pair in popularity)
-                {
-                    if(pair.Ratio == pair.Ratio)
-                    {
-                        arguments.Output.Add($"{pair.Instructor}'s popularity: {100 * pair.Ratio:F2}");
-                    }
-                }
-            }
-        }
-
         private static Arguments InitializeArguments(string[] args)
         {
             Arguments arguments = new Arguments();
@@ -290,6 +255,41 @@ namespace ClassStatistics
             IFilter<Meeting> filter = new MatchAllFilter<Meeting>();
             IEnumerable<Meeting> filteredMeetings = filter.Filter(meetings, arguments.Specifications.ToArray());
             return filteredMeetings;
+        }
+
+        private static void PopulateOutput(Arguments arguments, IEnumerable<Meeting> filteredMeetings)
+        {
+            foreach (Meeting meeting in filteredMeetings)
+            {
+                PopulatePopularityDictionary(arguments.PopularityChart, meeting);
+
+                if (arguments.DisplayResults)
+                {
+                    arguments.Output.Add(meeting.Display(arguments.DisplayVerbose));
+                }
+
+            }
+
+            if (arguments.DisplayPopularity)
+            {
+                Func<KeyValuePair<string, Pair<float>>, float> calculateRatio = kvp => (kvp.Value.First - kvp.Value.Second) / kvp.Value.First;
+
+                var popularity = arguments.PopularityChart.OrderByDescending(kvp => calculateRatio(kvp))
+                                                          .Select(kvp => new
+                                                          {
+                                                              Instructor = kvp.Key,
+                                                              Ratio = calculateRatio(kvp)
+                                                          });
+
+                arguments.Output.Add($"====== PROFESSOR POPULARITY ======");
+                foreach (var pair in popularity)
+                {
+                    if (pair.Ratio == pair.Ratio)
+                    {
+                        arguments.Output.Add($"{pair.Instructor}'s popularity: {100 * pair.Ratio:F2}");
+                    }
+                }
+            }
         }
 
         private static void PopulatePopularityDictionary(Dictionary<string, Pair<float>> PopularityChart, Meeting meeting)
