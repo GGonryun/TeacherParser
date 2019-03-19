@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using Class;
+﻿using Class;
 using HtmlAgilityPack;
+using System;
+using System.Text.RegularExpressions;
+using Utility;
 using Utility.HTML;
 
-namespace Utility
+namespace Builder
 {
     public class SdsuMeetingBuilder : IBuilder<Meeting>
     {

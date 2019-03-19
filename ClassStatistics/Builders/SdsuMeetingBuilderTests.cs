@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Utility.HTML;
+﻿using Class;
 using NUnit.Framework;
 using Utility;
-using Class;
+using Utility.HTML;
 
-namespace Utility
+namespace Builder
 {
     class SdsuMeetingBuilderTests
     {

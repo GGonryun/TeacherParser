@@ -30,9 +30,12 @@ namespace Class
             Instructor = instructor ?? throw new ArgumentNullException(nameof(instructor));
         }
 
-        public override string ToString()
+        public string Display(bool verbose)
         {
-            return $"[{Period.Semester.ToString()} {Period.Year}] {Course.Code}: {Course.Title} at {Time.ToString()} on {Day.Code} in {Location.Room.Code} with {Instructor}";
+            if (verbose)
+                return $"[{Period.Semester.ToString()} {Period.Year}] - {Course.Title} ({Course.Code}) at {Time.ToString()} on {Day.Code} in room {Location.Room.Code} with Professor {Instructor}. {Location.RemainingSeats} seats currently remain out of {Location.Capacity}.";
+            else
+                return $"[{Period.Semester.ToString()} {Period.Year}] - {Course.Code}: {Time.ToString()} {Day.Code} @ {Location.Room.Code} w/ {Instructor}. {100*Location.Ratio:F2}%";
         }
     }
 }

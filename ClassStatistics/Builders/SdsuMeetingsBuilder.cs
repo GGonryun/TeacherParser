@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Utility.HTML;
-using Class;
+﻿using Class;
 using HtmlAgilityPack;
-using Utility;
+using System.Collections.Generic;
+using Utility.HTML;
 
-namespace ClassStatistics
+namespace Builder
 {
-    public class SdsuMeetingsBuilder : IBuilder<Meetings>
+    public class SdsuMeetingsBuilder : IBuilder<IEnumerable<Meeting>>
     {
-        private Meetings _meetings;
+        private List<Meeting> _meetings;
         private readonly List<Period> _periods;
         private readonly List<string> _majors;
 
@@ -20,11 +17,11 @@ namespace ClassStatistics
             _majors = majors;
         }
 
-        public Meetings GetResult()
+        public IEnumerable<Meeting> GetResult()
         {
             if (_meetings == null)
             {
-                _meetings = new Meetings();
+                _meetings = new List<Meeting>();
 
                 foreach (string major in _majors)
                 {

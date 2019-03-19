@@ -88,7 +88,7 @@ namespace Filtering
         [Test]
         public void InstructorNameSpecification()
         {
-            IEnumerable<Meeting> teachers = filter.Filter(meetings, new InstructorNameSpecification(instructor => instructor.Contains("L. Beck")));
+            IEnumerable<Meeting> teachers = filter.Filter(meetings, new InstructorNameSpecification(instructor => instructor.Contains("L. Beck".ToUpper())));
             Assert.AreEqual(2, teachers.Count());
         }
 
@@ -113,7 +113,7 @@ namespace Filtering
             {
                 new CourseSubjectSpecification("CS"),
                 new CourseNumberSpecification(107),
-                new InstructorNameSpecification(instructor => instructor.Contains("L. Riggins"))
+                new InstructorNameSpecification(instructor => instructor.Contains("L. Riggins".ToUpper()))
             };
 
             IEnumerable<Meeting> course = filter.Filter(meetings, specs);
