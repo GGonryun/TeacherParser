@@ -5,6 +5,7 @@ using Filtering;
 using Filtering.Specifications;
 using Utility;
 using Builder;
+using System.Linq;
 
 namespace ClassStatistics
 {
@@ -19,13 +20,13 @@ namespace ClassStatistics
             public List<ISpecification<Meeting>> Specifications { get; private set; }
             public List<string> Subjects { get; private set; }
             public List<Period> Periods { get; private set; }
-            public Dictionary<string, Pair<int>> PopularityChart { get; private set; }
+            public Dictionary<string, Pair<float>> PopularityChart { get; private set; }
+            public List<string> Output { get; private set; }
             //These values can change at any time and should be set while parsing the
             //original args passed by the user.
             public bool DisplayPopularity { get; set; }
             public bool DisplayResults { get; set; }
             public bool DisplayVerbose { get; set; }
-
 
             public Arguments(School school = School.SDSU)
             {
@@ -33,7 +34,9 @@ namespace ClassStatistics
                 Specifications = new List<ISpecification<Meeting>>();
                 Subjects = new List<string>();
                 Periods = new List<Period>();
-                PopularityChart = new Dictionary<string, Pair<int>>();
+                PopularityChart = new Dictionary<string, Pair<float>>();
+                Output = new List<string>();
+
                 DisplayResults = true;
                 DisplayVerbose = false;
                 DisplayPopularity = false;
@@ -45,15 +48,52 @@ namespace ClassStatistics
         {
             Arguments arguments = InitializeArguments(args);
             IEnumerable<Meeting> filteredMeetings = SelectMeetings(arguments);
+            
+            PopulateOutput(arguments, filteredMeetings);
 
+            foreach(string line in arguments.Output)
+            {
+                Console.WriteLine(line);
+            }
+            
+
+        }
+
+        private static void PopulateOutput(Arguments arguments, IEnumerable<Meeting> filteredMeetings)
+        {
             foreach (Meeting meeting in filteredMeetings)
             {
-                if(arguments.DisplayResults)
+                PopulatePopularityDictionary(arguments.PopularityChart, meeting);
+
+                if (arguments.DisplayResults)
                 {
-                    Console.WriteLine(meeting.Display(arguments.DisplayVerbose));
+                    arguments.Output.Add(meeting.Display(arguments.DisplayVerbose));
+                }
+
+            }
+
+            if (arguments.DisplayPopularity)
+            {
+                Func<KeyValuePair<string, Pair<float>>, float> calculateRatio = kvp => (kvp.Value.First - kvp.Value.Second) / kvp.Value.First;
+
+                var popularity = arguments.PopularityChart.OrderByDescending(kvp => calculateRatio(kvp))
+                                                          .Select(kvp => new
+                                                          {
+                                                              Instructor = kvp.Key,
+                                                              Ratio = calculateRatio(kvp)
+                                                          });
+
+                arguments.Output.Add($"====== PROFESSOR POPULARITY ======");
+                foreach (var pair in popularity)
+                {
+                    if(pair.Ratio == pair.Ratio)
+                    {
+                        arguments.Output.Add($"{pair.Instructor}'s popularity: {100 * pair.Ratio:F2}");
+                    }
                 }
             }
         }
+
         private static Arguments InitializeArguments(string[] args)
         {
             Arguments arguments = new Arguments();
@@ -228,11 +268,6 @@ namespace ClassStatistics
                     case "--popularity":
                         arguments.DisplayPopularity = true;
                         break;
-                    case "--out":
-                        string path = args[++i];
-                        FileType type = EnumParser.ParseEnum<FileType>(args[++i]);
-                        break;
-                      
                 }
             }
             return arguments;
@@ -255,6 +290,18 @@ namespace ClassStatistics
             IFilter<Meeting> filter = new MatchAllFilter<Meeting>();
             IEnumerable<Meeting> filteredMeetings = filter.Filter(meetings, arguments.Specifications.ToArray());
             return filteredMeetings;
+        }
+
+        private static void PopulatePopularityDictionary(Dictionary<string, Pair<float>> PopularityChart, Meeting meeting)
+        {
+            string key = meeting.Instructor;
+            Pair<float> value = new Pair<float>(meeting.Location.Capacity, meeting.Location.RemainingSeats);
+
+            if (PopularityChart.ContainsKey(key))
+            {
+                value += new Pair<float>(PopularityChart[key].First, PopularityChart[key].Second);
+            }
+            PopularityChart[key] = value;
         }
 
         public static IBuilder<IEnumerable<Meeting>> GetBuilder(School school, List<string> subjects, List<Period> periods)
