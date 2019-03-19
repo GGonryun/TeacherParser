@@ -104,61 +104,62 @@
 - [Fall 2018] - CS-635: 1730-1845 TTH @ P-146 w/ R. WHITNEY. 88.89%
 
 ## PROFESSOR CLASS RATIO (% of seats occupied) 
-1. P. BARTOLI & D. MATTISON's popularity: 143.08
-2. T. OLMSTEAD's popularity: 117.86
-3. J. LANE & G. LEONARD's popularity: 110.00
-4. J. SCHULZE's popularity: 110.00
-5. D. MATTISON's popularity: 105.00
-6. P. BARTOLI's popularity: 103.48
-7. M. WELLINGTON-OGURI's popularity: 101.25
-8. J. GAPPY's popularity: 101.11
-9. X. LIU's popularity: 100.86
-10. S. PRICE's popularity: 100.78
-11. S. HEALEY's popularity: 100.09
-12. R. OLMSTEAD's popularity: 100.00
-13. K. Levi's popularity: 100.00
-14. H. NGUYEN's popularity: 100.00
-15. L. RIGGINS's popularity: 99.38
-16. R. AUGUST's popularity: 98.75
-17. I. BAJIC's popularity: 98.72
-18. J. LANE's popularity: 98.33
-19. S. Lindeneau's popularity: 97.72
-20. R. EDWARDS & L. RIGGINS's popularity: 97.50
-21. J. SADURAL's popularity: 97.14
-22. Y. XU's popularity: 96.80
-23. G. LEONARD's popularity: 94.89
-24. C. CHIE's popularity: 94.69
-25. K. STEWART's popularity: 93.91
-26. J. LEWIS's popularity: 92.44
-27. P. KRAFT's popularity: 91.47
-28. N. ALIPANAH's popularity: 91.45
-29. S. WARNER's popularity: 91.11
-30. W. WANG's popularity: 86.62
-31. R. EDWARDS's popularity: 84.18
-32. W. ROOT's popularity: 83.60
-33. J. CARROLL's popularity: 83.33
-34. J. DONALD's popularity: 83.33
-35. R. WHITNEY's popularity: 83.03
-36. P. KRAFT & J. LANE's popularity: 82.08
-37. C. KONOPKA's popularity: 81.67
-38. T. XIE's popularity: 78.93
-39. J. BARR's popularity: 75.00
-40. C. ECKBERG's popularity: 74.53
-41. M. VUSKOVIC's popularity: 72.91
-42. M. THOMAS's popularity: 62.80
-43. M. TAROKH's popularity: 62.28
-44. J. GAWRON's popularity: 61.11
-45. M. ROCH's popularity: 60.33
-46. E. COLBERT's popularity: 60.00
-47. R. Madachy's popularity: 55.38
-48. R. SWINIARSKI's popularity: 54.74
-49. F. VALAFAR's popularity: 51.82
-50. R. MALOUF's popularity: 41.74
-51. P. ARCHBOLD's popularity: 35.00
-52. N. MAROVAC's popularity: 23.33
-53. L. BECK's popularity: 16.97
-54. J. OTTO's popularity: 15.69
-55. Y. HONG's popularity: 15.00
-56. S. REN's popularity: 13.74
-57. J. CORBINO DELGADO's popularity: 10.00
-58. O. GRAD's popularity: 6.57
+*These results are influenced by the number of seats available and seats occupied per semester, therefore teachers who open small sections for graduate students may have their scores impacted unfairly, professors who teach 600+ level classes will also have lower seat fill ratios as well*
+====== PROFESSOR CLASS RATIOS ======
+- P. BARTOLI & D. MATTISON's % of seats filled: 143.08
+- T. OLMSTEAD's % of seats filled: 117.86
+- J. LANE & G. LEONARD's % of seats filled: 110.00
+- J. SCHULZE's % of seats filled: 110.00
+- D. MATTISON's % of seats filled: 105.00
+- P. BARTOLI's % of seats filled: 103.48
+- M. WELLINGTON-OGURI's % of seats filled: 101.25
+- J. GAPPY's % of seats filled: 101.11
+- X. LIU's % of seats filled: 100.86
+- S. PRICE's % of seats filled: 100.78
+- I. BAJIC's % of seats filled: 100.40
+- L. RIGGINS's % of seats filled: 100.22
+- S. HEALEY's % of seats filled: 100.09
+- R. OLMSTEAD's % of seats filled: 100.00
+- K. Levi's % of seats filled: 100.00
+- H. NGUYEN's % of seats filled: 100.00
+- R. AUGUST's % of seats filled: 98.75
+- J. LANE's % of seats filled: 98.33
+- S. Lindeneau's % of seats filled: 97.72
+- R. EDWARDS & L. RIGGINS's % of seats filled: 97.50
+- J. SADURAL's % of seats filled: 97.14
+- J. LEWIS's % of seats filled: 96.81
+- Y. XU's % of seats filled: 96.80
+- G. LEONARD's % of seats filled: 95.67
+- C. CHIE's % of seats filled: 94.58
+- K. STEWART's % of seats filled: 94.26
+- P. KRAFT's % of seats filled: 91.72
+- N. ALIPANAH's % of seats filled: 91.45
+- S. WARNER's % of seats filled: 91.11
+- W. WANG's % of seats filled: 86.62
+- W. ROOT's % of seats filled: 86.16
+- R. WHITNEY's % of seats filled: 84.91
+- R. EDWARDS's % of seats filled: 83.92
+- J. CARROLL's % of seats filled: 83.75
+- J. DONALD's % of seats filled: 83.33
+- P. KRAFT & J. LANE's % of seats filled: 82.08
+- C. KONOPKA's % of seats filled: 81.67
+- T. XIE's % of seats filled: 78.63
+- J. BARR's % of seats filled: 75.00
+- C. ECKBERG's % of seats filled: 74.81
+- M. VUSKOVIC's % of seats filled: 73.54
+- M. TAROKH's % of seats filled: 63.13
+- M. ROCH's % of seats filled: 63.10
+- M. THOMAS's % of seats filled: 62.80
+- J. GAWRON's % of seats filled: 61.11
+- R. Madachy's % of seats filled: 55.38
+- R. SWINIARSKI's % of seats filled: 54.74
+- F. VALAFAR's % of seats filled: 46.84
+- R. MALOUF's % of seats filled: 41.05
+- P. ARCHBOLD's % of seats filled: 35.00
+- N. MAROVAC's % of seats filled: 23.33
+- L. BECK's % of seats filled: 18.55
+- J. OTTO's % of seats filled: 15.69
+- Y. HONG's % of seats filled: 15.00
+- S. REN's % of seats filled: 13.74
+- J. CORBINO DELGADO's % of seats filled: 10.00
+- O. GRAD's % of seats filled: 5.58
